@@ -1,0 +1,57 @@
+{{ define "main" }}
+<main>
+  <section class="hero section-wrap">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="status-dot"></span>{{ .Site.Params.availability }}</p>
+      <p class="kicker">CIVIL ENGINEERING · INFRASTRUCTURE DEVELOPMENT</p>
+      <h1>Turning complex ideas into <em>real-world infrastructure.</em></h1>
+      <p class="hero-lead">Saya Rizky Bintang, Civil Engineer yang berfokus pada perencanaan infrastruktur, masterplanning, project development, dan visualisasi teknis.</p>
+      <div class="hero-actions">
+        <a class="button button-dark" href="#portfolio">Lihat portofolio <span>↗</span></a>
+        <a class="text-link" href="#contact">Hubungi saya <span>↗</span></a>
+      </div>
+      <div class="hero-meta"><span>Yogyakarta, Indonesia</span><span>Available for selected projects</span></div>
+    </div>
+    <div class="hero-visual">
+      <div class="visual-grid"></div>
+      <div class="visual-card card-top"><span>01 / APPROACH</span><strong>Plan<br>with purpose.</strong></div>
+      <div class="visual-orbit"><div class="orbit-ring"></div><div class="orbit-core">RB<span>ENGINEERING</span></div><span class="orbit-label label-one">PLANNING</span><span class="orbit-label label-two">DESIGN</span><span class="orbit-label label-three">DELIVERY</span></div>
+      <div class="visual-card card-bottom"><span>02 / DISCIPLINE</span><strong>Engineering<br>meets strategy.</strong></div>
+      <span class="visual-index">FIG. 001 — BUILT ENVIRONMENT</span>
+    </div>
+  </section>
+
+  <section class="intro-band">
+    <div class="section-wrap intro-inner"><span class="section-number">01 / PROFILE</span><p>Menghubungkan <strong>engineering, strategy,</strong> dan <strong>visual communication</strong> untuk membantu proyek bergerak dari konsep menuju implementasi.</p></div>
+  </section>
+
+  <section class="section-wrap section-block" id="expertise">
+    <div class="section-heading"><div><span class="section-number">02 / WHAT I DO</span><h2>Areas of <em>expertise.</em></h2></div><p>Kompetensi lintas disiplin untuk mendukung perencanaan dan pengembangan proyek.</p></div>
+    <div class="expertise-grid">
+      <article class="expertise-item"><span>01</span><div><h3>Infrastructure Planning</h3><p>Perencanaan kawasan, infrastruktur dasar, dan integrasi kebutuhan teknis.</p></div><b>↗</b></article>
+      <article class="expertise-item"><span>02</span><div><h3>Masterplanning</h3><p>Pengembangan konsep kawasan, tata letak, dan strategi pengembangan bertahap.</p></div><b>↗</b></article>
+      <article class="expertise-item"><span>03</span><div><h3>Project Development</h3><p>Dukungan studi, analisis teknis, dan penyusunan dokumentasi proyek.</p></div><b>↗</b></article>
+      <article class="expertise-item"><span>04</span><div><h3>Technical Visualization</h3><p>Visualisasi data, infografis teknis, presentasi, dan komunikasi desain.</p></div><b>↗</b></article>
+    </div>
+  </section>
+
+  <section class="portfolio-section" id="portfolio">
+    <div class="section-wrap section-block">
+      <div class="section-heading"><div><span class="section-number">03 / SELECTED WORK</span><h2>Selected <em>projects.</em></h2></div><p>Contoh area pekerjaan. Detail proyek akan ditambahkan dan disesuaikan dengan materi portofolio yang boleh dipublikasikan.</p></div>
+      <div class="project-grid">
+        <article class="project-card project-feature"><div class="project-art art-master"><span class="art-tag">01 / MASTERPLANNING</span><div class="master-lines"></div><div class="master-label">SITE<br>DEVELOPMENT</div></div><div class="project-info"><div><h3>Infrastructure & Area Masterplanning</h3><p>Planning · Concept Development · Technical Presentation</p></div><span>↗</span></div></article>
+        <article class="project-card"><div class="project-art art-data"><span class="art-tag">02 / TECHNICAL ANALYSIS</span><div class="data-bars"><i></i><i></i><i></i><i></i><i></i></div><div class="data-circle">DATA<br>TO<br>INSIGHT</div></div><div class="project-info"><div><h3>Technical Study & Analysis</h3><p>Engineering · Research · Documentation</p></div><span>↗</span></div></article>
+        <article class="project-card"><div class="project-art art-visual"><span class="art-tag">03 / VISUAL COMMUNICATION</span><div class="visual-block block-a"></div><div class="visual-block block-b"></div><div class="visual-block block-c"></div></div><div class="project-info"><div><h3>Engineering Visualization</h3><p>Infographic · Presentation · 3D Concept</p></div><span>↗</span></div></article>
+      </div>
+      <p class="note">Catatan: kartu di atas merupakan kategori/placeholder portofolio, bukan klaim proyek yang telah diselesaikan.</p>
+    </div>
+  </section>
+
+  <section class="section-wrap about-strip" id="about">
+    <span class="section-number">04 / ABOUT</span>
+    <div><h2>Engineering perspective.<br><em>Creative execution.</em></h2><p>Saya percaya solusi infrastruktur yang baik membutuhkan ketelitian teknis sekaligus kemampuan menyampaikan ide secara jelas. Saya terbuka untuk kolaborasi dengan konsultan, perusahaan, tim proyek, dan klien yang membutuhkan dukungan perencanaan maupun komunikasi teknis.</p><a class="text-link" href="mailto:{{ .Site.Params.email }}">Diskusikan proyek <span>↗</span></a></div>
+  </section>
+
+  <section class="contact-section" id="contact"><div class="section-wrap contact-inner"><span class="section-number">05 / LET'S CONNECT</span><h2>Have a project<br>in <em>mind?</em></h2><p>Mari berdiskusi tentang kebutuhan proyek, kolaborasi, atau peluang freelance.</p><div class="contact-actions"><a class="button button-light" href="mailto:{{ .Site.Params.email }}">Email me ↗</a><a class="contact-link" href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener">LinkedIn ↗</a><a class="contact-link" href="{{ .Site.Params.whatsapp }}" target="_blank" rel="noopener">WhatsApp ↗</a></div></div></section>
+</main>
+{{ end }}
