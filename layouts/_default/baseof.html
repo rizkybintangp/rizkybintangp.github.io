@@ -13,6 +13,10 @@
 <body>
 <header class="site-header"><a class="brand" href="{{ .Site.Home.RelPermalink }}"><span class="brand-mark">RB</span><span>RIZKY BINTANG<small>CIVIL ENGINEER</small></span></a><nav><a href="#about">About</a><a href="#expertise">Expertise</a><a href="#portfolio">Portfolio</a><a class="nav-contact" href="#contact">Let's talk <span>↗</span></a></nav><button class="menu-toggle" aria-label="Toggle menu" onclick="document.body.classList.toggle('menu-open')">☰</button></header>
 {{ block "main" . }}{{ end }}
-<footer class="site-footer"><div class="section-wrap footer-inner"><span>© {{ now.Year }} {{ .Site.Params.author }}. All rights reserved.</span><span>Designed with intent · Built with Hugo</span><a href="#top">Back to top ↑</a></div></footer>
-</body>
-</html>
+<footer class="site-footer">
+    <div class="section-wrap footer-inner">
+        <span>© {{ now.Year }} Rizky Bintang Pratama. All rights reserved.</span>
+        <span>Civil Engineering · Infrastructure Development</span>
+        <a href="#top">Back to top ↑</a>
+    </div>
+</footer>
