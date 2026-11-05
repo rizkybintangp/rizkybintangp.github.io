@@ -1,194 +1,147 @@
-
 /* =========================================
    RIZKY BINTANG PORTFOLIO
-   NAVBAR + SCROLL REVEAL
+   Navbar, menu HP, scroll-spy, reveal, cahaya kartu
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ---------------------------------------
-     1. FLOATING NAVBAR
-  --------------------------------------- */
-
   const header = document.getElementById("siteHeader");
   const menuToggle = document.getElementById("menuToggle");
   const mainNav = document.getElementById("mainNav");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* 1. Navbar berubah saat scroll */
   if (header) {
-
-    const updateNavbar = () => {
-      header.classList.toggle(
-        "is-scrolled",
-        window.scrollY > 40
-      );
-    };
-
-    updateNavbar();
-
-    window.addEventListener("scroll", updateNavbar, {
-      passive: true
-    });
-
+    const update = () => header.classList.toggle("is-scrolled", window.scrollY > 24);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
   }
 
-  /* ---------------------------------------
-     2. MOBILE NAVIGATION
-  --------------------------------------- */
-
-  if (menuToggle && mainNav) {
-
-    const closeMenu = () => {
-      document.body.classList.remove("menu-open");
-
-      menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.setAttribute(
-        "aria-label",
-        "Open navigation menu"
-      );
+  /* 2. Menu HP */
+  if (header && menuToggle && mainNav) {
+    const setOpen = (open) => {
+      document.body.classList.toggle("menu-open", open);
+      menuToggle.setAttribute("aria-expanded", String(open));
+      menuToggle.setAttribute("aria-label", open ? "Tutup menu navigasi" : "Buka menu navigasi");
     };
 
-    menuToggle.addEventListener("click", () => {
+    menuToggle.addEventListener("click", () =>
+      setOpen(!document.body.classList.contains("menu-open")));
 
-      const isOpen = document.body.classList.toggle("menu-open");
+    mainNav.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => setOpen(false)));
 
-      menuToggle.setAttribute(
-        "aria-expanded",
-        String(isOpen)
-      );
-
-      menuToggle.setAttribute(
-        "aria-label",
-        isOpen ? "Close navigation menu" : "Open navigation menu"
-      );
-
+    document.addEventListener("click", (e) => {
+      if (document.body.classList.contains("menu-open") && !header.contains(e.target)) setOpen(false);
     });
 
-    mainNav.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", closeMenu);
-    });
-
-    document.addEventListener("click", event => {
-
-      if (
-        document.body.classList.contains("menu-open") &&
-        !header.contains(event.target)
-      ) {
-        closeMenu();
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && document.body.classList.contains("menu-open")) {
+        setOpen(false);
+        menuToggle.focus();
       }
-
     });
 
-    document.addEventListener("keydown", event => {
-
-      if (event.key === "Escape") {
-        closeMenu();
-      }
-
+    window.matchMedia("(min-width: 761px)").addEventListener("change", (e) => {
+      if (e.matches) setOpen(false);
     });
-
-    window.addEventListener("resize", () => {
-
-      if (window.innerWidth > 760) {
-        closeMenu();
-      }
-
-    });
-
   }
 
-  /* ---------------------------------------
-     3. SCROLL REVEAL
-  --------------------------------------- */
+  /* 3. Tandai menu sesuai section yang sedang dilihat (hanya di beranda)
+        + pill penanda yang meluncur ke menu aktif (desktop) */
+  const indicator = mainNav ? mainNav.querySelector(".nav-indicator") : null;
+  const desktop = window.matchMedia("(min-width: 761px)");
 
-  const revealElements = document.querySelectorAll(".reveal");
-
-  // Aktifkan progressive enhancement.
-  // Tanpa JavaScript, konten tetap terlihat.
-
-  document.documentElement.classList.add("js");
-
-  const showAllReveal = () => {
-    revealElements.forEach(element => {
-      element.classList.add("is-visible");
-    });
+  const placeIndicator = () => {
+    if (!mainNav || !indicator) return;
+    const active = mainNav.querySelector('a[aria-current="true"]:not(.nav-cta)');
+    if (!active || !desktop.matches) {
+      mainNav.classList.remove("has-indicator");
+      indicator.style.opacity = "0";
+      return;
+    }
+    mainNav.classList.add("has-indicator");
+    indicator.style.width = active.offsetWidth + "px";
+    indicator.style.transform = `translateX(${active.offsetLeft}px)`;
+    indicator.style.opacity = "1";
   };
 
-  const reducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+  if (mainNav && "IntersectionObserver" in window) {
+    const links = new Map();
+    mainNav.querySelectorAll('a[href*="#"]:not(.nav-cta)').forEach((a) => {
+      const id = a.hash.slice(1);
+      if (id && document.getElementById(id)) links.set(id, a);
+    });
 
-  if (
-    reducedMotion ||
-    !("IntersectionObserver" in window)
-  ) {
-    showAllReveal();
-    return;
+    if (links.size) {
+      const spy = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          links.forEach((a, id) => {
+            if (id === entry.target.id) a.setAttribute("aria-current", "true");
+            else a.removeAttribute("aria-current");
+          });
+          placeIndicator();
+        });
+      }, { rootMargin: "-45% 0px -50% 0px" });
+
+      links.forEach((_, id) => spy.observe(document.getElementById(id)));
+
+      /* Hero & Contact: tidak ada menu teks yang aktif (Contact diwakili tombol "Let's talk") */
+      ["home", "contact"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            links.forEach((a) => a.removeAttribute("aria-current"));
+            placeIndicator();
+          }
+        }, { rootMargin: "-45% 0px -50% 0px" }).observe(el);
+      });
+    }
   }
 
-  const revealObserver = new IntersectionObserver(
-    (entries, observer) => {
+  window.addEventListener("resize", placeIndicator, { passive: true });
+  desktop.addEventListener("change", placeIndicator);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeIndicator);
 
-      entries.forEach(entry => {
+  /* 4. Muncul halus saat di-scroll */
+  const revealEls = document.querySelectorAll(".reveal");
+  const showAll = () => revealEls.forEach((el) => el.classList.add("is-visible"));
 
+  if (reducedMotion || !("IntersectionObserver" in window)) {
+    showAll();
+  } else {
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-
           entry.target.classList.add("is-visible");
-
-          observer.unobserve(entry.target);
-
+          obs.unobserve(entry.target);
         }
-
       });
+    }, { threshold: 0.08, rootMargin: "0px 0px -24px 0px" });
 
-    },
-    {
-      threshold: 0.05,
-      rootMargin: "0px 0px -20px 0px"
-    }
-  );
+    revealEls.forEach((el) => io.observe(el));
+    // Jaring pengaman: jangan pernah biarkan konten tersembunyi
+    setTimeout(showAll, 4000);
+  }
 
-  revealElements.forEach(element => {
-    revealObserver.observe(element);
-  });
-
-});
-
-/* =========================================
-   PROJECT CARD - MOUSE LIGHT INTERACTION
-========================================= */
-
-document.querySelectorAll(".project-card").forEach(card => {
-
-  card.addEventListener("pointermove", event => {
-
-    if (event.pointerType !== "mouse") return;
-
-    const rect = card.getBoundingClientRect();
-
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-
-    const mouseX = (x / rect.width) * 100;
-    const mouseY = (y / rect.height) * 100;
-
+  /* 5. Kilau cahaya mengikuti kursor pada kartu proyek (mouse saja) */
+  document.querySelectorAll(".project-card").forEach((card) => {
     const art = card.querySelector(".project-art");
+    if (!art) return;
 
-    if (art) {
-      art.style.setProperty("--mouse-x", `${mouseX}%`);
-      art.style.setProperty("--mouse-y", `${mouseY}%`);
-    }
+    card.addEventListener("pointermove", (e) => {
+      if (e.pointerType !== "mouse") return;
+      const r = art.getBoundingClientRect();
+      art.style.setProperty("--mouse-x", `${((e.clientX - r.left) / r.width) * 100}%`);
+      art.style.setProperty("--mouse-y", `${((e.clientY - r.top) / r.height) * 100}%`);
+    });
 
-  });
-
-  card.addEventListener("pointerleave", () => {
-
-    const art = card.querySelector(".project-art");
-
-    if (art) {
+    card.addEventListener("pointerleave", () => {
       art.style.setProperty("--mouse-x", "50%");
       art.style.setProperty("--mouse-y", "50%");
-    }
-
+    });
   });
 
 });

@@ -5,6 +5,7 @@ date = 2026-11-05
 draft = false
 weight = 1
 
+icon = "map"
 category = "MASTERPLANNING"
 year = "2025"
 status = "Portfolio Category"

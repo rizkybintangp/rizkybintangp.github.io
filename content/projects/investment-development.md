@@ -5,6 +5,7 @@ date = 2026-11-05
 draft = false
 weight = 4
 
+icon = "briefcase"
 category = "INVESTMENT DEVELOPMENT"
 year = "2025"
 status = "Portfolio Category"

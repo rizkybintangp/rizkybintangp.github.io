@@ -1,279 +1,210 @@
 {{ define "main" }}
- 
-<section class="hero section-wrap" id="home">
+<main id="main">
 
-  <!-- LEFT: HERO CONTENT -->
-  <div class="hero-copy">
+  <!-- HERO -->
+  <section class="hero container" id="home">
 
-    <p class="eyebrow hero-reveal delay-1">
-      <span class="status-dot"></span>
-      {{ .Site.Params.availability }}
-    </p>
-
-    <p class="kicker hero-reveal delay-2">
-      CIVIL ENGINEERING · INFRASTRUCTURE DEVELOPMENT
-    </p>
-
-    <h1 class="hero-reveal delay-3">
-      Turning complex ideas into
-      <em>real-world infrastructure.</em>
-    </h1>
-
-    <p class="hero-lead hero-reveal delay-4">
-      Saya Rizky Bintang, Civil Engineer yang berfokus pada
-      perencanaan infrastruktur, masterplanning, project development,
-      dan visualisasi teknis.
-    </p>
-
-    <div class="hero-actions hero-reveal delay-5">
-
-      <a
-        class="button button-dark"
-        href="/cv/Rizky_Bintang_Pratama_CV.pdf"
-        download
-      >
-        Download CV
-        <span>↓</span>
-      </a>
-
-      <a class="text-link" href="#portfolio">
-        Explore Portfolio
-        <span>↗</span>
-      </a>
-
-    </div>
-
-    <div class="hero-meta hero-reveal delay-5">
-      <span>Yogyakarta, Indonesia</span>
-      <span>Available for selected projects</span>
-    </div>
-
-  </div>
-
-
-  <!-- RIGHT: PROFILE PHOTO -->
-  <div class="hero-visual profile-visual hero-reveal delay-3">
-    <div class="profile-image-wrap">
-      <img
-        src="{{ "images/profile.png" | relURL }}"
-        alt="Rizky Bintang - Civil Engineer"
-        class="profile-image"
-        width="800"
-        height="1000"
-        fetchpriority="high"
-        decoding="async"
-      >
-    </div>
-  </div>
-
-</section>
-
-  <section class="intro-band">
-    <div class="section-wrap intro-inner reveal"><span class="section-number">01 / PROFILE</span><p>Menghubungkan <strong>engineering, strategy,</strong> dan <strong>visual communication</strong> untuk membantu proyek bergerak dari konsep menuju implementasi.</p></div>
-  </section>
-
-  
-<section class="section-wrap section-block" id="expertise">
-
-  <!-- SECTION HEADING -->
-  <div class="section-heading reveal">
-
-    <div>
-      <span class="section-number">02 / WHAT I DO</span>
-      <h2>Areas of <em>expertise.</em></h2>
-    </div>
-
-    <p>
-      Kompetensi lintas disiplin untuk mendukung
-      perencanaan dan pengembangan proyek.
-    </p>
-
-  </div>
-
-
-  <!-- EXPERTISE GRID -->
-  <div class="expertise-grid">
-
-    <article class="expertise-item reveal">
-
-      <span>01</span>
-
-      <div>
-        <h3>Infrastructure Planning</h3>
-        <p>
-          Perencanaan kawasan, infrastruktur dasar,
-          dan integrasi kebutuhan teknis.
-        </p>
-      </div>
-
-      <b>↗</b>
-
-    </article>
-
-
-    <article class="expertise-item reveal">
-
-      <span>02</span>
-
-      <div>
-        <h3>Masterplanning</h3>
-        <p>
-          Pengembangan konsep kawasan, tata letak,
-          dan strategi pengembangan bertahap.
-        </p>
-      </div>
-
-      <b>↗</b>
-
-    </article>
-
-
-    <article class="expertise-item reveal">
-
-      <span>03</span>
-
-      <div>
-        <h3>Project Development</h3>
-        <p>
-          Dukungan studi, analisis teknis,
-          dan penyusunan dokumentasi proyek.
-        </p>
-      </div>
-
-      <b>↗</b>
-
-    </article>
-
-
-    <article class="expertise-item reveal">
-
-      <span>04</span>
-
-      <div>
-        <h3>Technical Visualization</h3>
-        <p>
-          Visualisasi data, infografis teknis,
-          presentasi, dan komunikasi desain.
-        </p>
-      </div>
-
-      <b>↗</b>
-
-    </article>
-
-  </div>
-
-</section>
-
-
-
-<section class="portfolio-section" id="portfolio">
-
-  <div class="section-wrap section-block">
-
-    <!-- SECTION HEADING -->
-    <div class="section-heading reveal">
-
-      <div>
-        <span class="section-number">03 / SELECTED WORK</span>
-        <h2>Selected <em>projects.</em></h2>
-      </div>
-
-      <p>
-        Pilihan bidang pekerjaan, studi teknis,
-        dan pengembangan infrastruktur.
+    <div class="hero-copy">
+      <p class="pill pill-status hero-in" style="--i:0">
+        <span class="status-dot" aria-hidden="true"></span>
+        {{ .Site.Params.availability }}
       </p>
 
+      <h1 class="hero-in" style="--i:1">
+        Turning complex ideas into <span class="nowrap">real-world</span> infrastructure.
+      </h1>
+
+      <p class="lead hero-in" style="--i:2">
+        Saya Rizky Bintang, Civil Engineer yang berfokus pada perencanaan
+        infrastruktur, masterplanning, project development, dan visualisasi teknis.
+      </p>
+
+      <div class="actions hero-in" style="--i:3">
+        <a class="btn btn-primary" href="{{ "cv/Rizky_Bintang_Pratama_CV.pdf" | relURL }}" download>
+          Download CV {{ partial "icon.html" "download" }}
+        </a>
+        <a class="btn btn-glass glass" href="#portfolio">
+          Lihat portfolio {{ partial "icon.html" "arrow-right" }}
+        </a>
+      </div>
     </div>
 
+    <div class="hero-visual hero-in" style="--i:2">
+      <span class="halo" aria-hidden="true"></span>
 
-    <!-- DYNAMIC PROJECT GRID -->
-    <div class="project-grid">
+      <picture class="portrait">
+        <source type="image/webp" srcset="{{ "images/profile.webp" | relURL }}">
+        <img
+          src="{{ "images/profile.png" | relURL }}"
+          alt="Rizky Bintang, Civil Engineer"
+          width="672" height="1100"
+          fetchpriority="high" decoding="async">
+      </picture>
 
+      <!-- Kabut: menyamarkan potongan foto di bagian bawah & samping -->
+      <div class="mist" aria-hidden="true">
+        <i class="mist-a"></i><i class="mist-b"></i><i class="mist-c"></i>
+      </div>
+
+      <span class="chip chip-role glass">
+        {{ partial "icon.html" "layers" }} Civil Engineer
+      </span>
+      <span class="chip chip-loc glass">
+        {{ partial "icon.html" "pin" }} {{ .Site.Params.location }}
+      </span>
+    </div>
+
+  </section>
+
+  <!-- STATEMENT -->
+  <section class="container statement-wrap">
+    <div class="statement glass reveal">
+      <p>
+        Menghubungkan <strong>engineering, strategy,</strong> dan
+        <strong>visual communication</strong> untuk membantu proyek bergerak
+        dari konsep menuju implementasi.
+      </p>
+    </div>
+  </section>
+
+  <!-- EXPERTISE -->
+  <section class="container section" id="expertise">
+
+    <div class="section-head reveal">
+      <h2>Areas of expertise</h2>
+      <p>Kompetensi lintas disiplin untuk mendukung perencanaan dan pengembangan proyek.</p>
+    </div>
+
+    <div class="bento">
+
+      <article class="tile glass tile-wide reveal">
+        <span class="app-icon tone-blue">{{ partial "icon.html" "layers" }}</span>
+        <div>
+          <h3>Infrastructure Planning</h3>
+          <p>Perencanaan kawasan, infrastruktur dasar, dan integrasi kebutuhan teknis.</p>
+        </div>
+      </article>
+
+      <article class="tile glass tile-narrow reveal">
+        <span class="app-icon tone-teal">{{ partial "icon.html" "map" }}</span>
+        <div>
+          <h3>Masterplanning</h3>
+          <p>Pengembangan konsep kawasan, tata letak, dan strategi pengembangan bertahap.</p>
+        </div>
+      </article>
+
+      <article class="tile glass tile-narrow reveal">
+        <span class="app-icon tone-lilac">{{ partial "icon.html" "briefcase" }}</span>
+        <div>
+          <h3>Project Development</h3>
+          <p>Dukungan studi, analisis teknis, dan penyusunan dokumentasi proyek.</p>
+        </div>
+      </article>
+
+      <article class="tile glass tile-wide reveal">
+        <span class="app-icon tone-amber">{{ partial "icon.html" "cube" }}</span>
+        <div>
+          <h3>Technical Visualization</h3>
+          <p>Visualisasi data, infografis teknis, presentasi, dan komunikasi desain.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="container section" id="portfolio">
+
+    <div class="section-head reveal">
+      <h2>Selected projects</h2>
+      <p>Pilihan bidang pekerjaan, studi teknis, dan pengembangan infrastruktur.</p>
+    </div>
+
+    {{ $others := sub (len (where site.RegularPages "Section" "projects")) 1 }}
+    <div class="project-grid others-{{ $others }}">
+
+      {{ $tones := slice "blue" "teal" "lilac" "amber" }}
       {{ $projects := sort (where site.RegularPages "Section" "projects") "Weight" "asc" }}
 
       {{ range $index, $project := $projects }}
+        {{ $tone := index $tones (mod $index 4) }}
 
-        <a
-          href="{{ $project.RelPermalink }}"
-          class="project-card {{ if eq $index 0 }}project-feature{{ end }} reveal"
-        >
+        <a href="{{ $project.RelPermalink }}"
+           class="project-card glass {{ if eq $index 0 }}project-feature{{ end }} reveal">
 
-          <div class="project-art project-art-dynamic">
-
+          <div class="project-art tone-{{ $tone }}">
             {{ with $project.Params.image }}
-
-              <img
-                src="{{ . | relURL }}"
-                alt="{{ $project.Title }}"
-                loading="lazy"
-                decoding="async"
-              >
-
+              <img src="{{ . | relURL }}" alt="{{ $project.Title }}" loading="lazy" decoding="async">
             {{ else }}
-
-              <div class="project-placeholder">
-                <span class="art-tag">
-                  {{ printf "%02d" (add $index 1) }} /
-                  {{ $project.Params.category }}
-                </span>
-
-                <div class="placeholder-symbol">
-                  {{ printf "%02d" (add $index 1) }}
-                </div>
-
-                <span class="placeholder-label">
-                  {{ $project.Title }}
-                </span>
-              </div>
-
+              <span class="art-orb" aria-hidden="true"></span>
+              <span class="art-icon" aria-hidden="true">
+                {{ partial "icon.html" ($project.Params.icon | default "layers") }}
+              </span>
             {{ end }}
-
+            <span class="pill pill-art">{{ $project.Params.category | lower | title }}</span>
           </div>
 
-
           <div class="project-info">
-
             <div>
-
               <h3>{{ $project.Title }}</h3>
-
-              <p>
-                {{ $project.Params.summary }}
-              </p>
-
+              <p>{{ $project.Params.summary }}</p>
             </div>
-
-            <span aria-hidden="true">↗</span>
-
+            <span class="go" aria-hidden="true">{{ partial "icon.html" "arrow-up-right" }}</span>
           </div>
 
         </a>
 
       {{ else }}
 
-        <p>
-          Project portfolio sedang dipersiapkan.
-        </p>
+        <p>Project portfolio sedang dipersiapkan.</p>
 
       {{ end }}
 
     </div>
 
-    <p class="note">
-      Setiap halaman proyek menyajikan informasi
-      mengenai pendekatan, ruang lingkup, dan
-      dokumentasi pekerjaan yang tersedia.
+    <p class="note reveal">
+      Setiap halaman proyek menyajikan informasi mengenai pendekatan,
+      ruang lingkup, dan dokumentasi pekerjaan yang tersedia.
     </p>
 
-  </div>
-
-</section>
-
-  <section class="section-wrap about-strip reveal" id="about">
-    <span class="section-number">04 / ABOUT</span>
-    <div><h2>Engineering perspective.<br><em>Creative execution.</em></h2><p>Saya percaya solusi infrastruktur yang baik membutuhkan ketelitian teknis sekaligus kemampuan menyampaikan ide secara jelas. Saya terbuka untuk kolaborasi dengan konsultan, perusahaan, tim proyek, dan klien yang membutuhkan dukungan perencanaan maupun komunikasi teknis.</p><a class="text-link" href="mailto:{{ .Site.Params.email }}">Diskusikan proyek <span>↗</span></a></div>
   </section>
 
-  <section class="contact-section" id="contact"><div class="section-wrap contact-inner reveal"><span class="section-number">05 / LET'S CONNECT</span><h2>Have a project<br>in <em>mind?</em></h2><p>Mari berdiskusi tentang kebutuhan proyek, kolaborasi, atau peluang freelance.</p><div class="contact-actions"><a class="button button-light" href="mailto:{{ .Site.Params.email }}">Email me ↗</a><a class="contact-link" href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener">LinkedIn ↗</a><a class="contact-link" href="{{ .Site.Params.whatsapp }}" target="_blank" rel="noopener">WhatsApp ↗</a></div></div></section>
+  <!-- ABOUT -->
+  <section class="container section-tight ice-stage ice-stage-light" id="about">
+    <div class="about ice ice-light reveal">
+      <h2>Engineering perspective. Creative execution.</h2>
+      <div class="about-body">
+        <p>
+          Saya percaya solusi infrastruktur yang baik membutuhkan ketelitian teknis
+          sekaligus kemampuan menyampaikan ide secara jelas. Saya terbuka untuk
+          kolaborasi dengan konsultan, perusahaan, tim proyek, dan klien yang
+          membutuhkan dukungan perencanaan maupun komunikasi teknis.
+        </p>
+        <a class="text-link" href="mailto:{{ .Site.Params.email }}">
+          Diskusikan proyek {{ partial "icon.html" "arrow-right" }}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="container section-tight ice-stage ice-stage-dark" id="contact">
+    <div class="contact ice ice-dark reveal">
+      <h2>Have a project in mind?</h2>
+      <p>Mari berdiskusi tentang kebutuhan proyek, kolaborasi, atau peluang freelance.</p>
+      <div class="actions">
+        <a class="btn btn-light" href="mailto:{{ .Site.Params.email }}">
+          {{ partial "icon.html" "mail" }} Email saya
+        </a>
+        <a class="btn btn-frost" href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener">
+          {{ partial "icon.html" "linkedin" }} LinkedIn
+        </a>
+        <a class="btn btn-frost" href="{{ .Site.Params.whatsapp }}" target="_blank" rel="noopener">
+          {{ partial "icon.html" "chat" }} WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
 {{ end }}

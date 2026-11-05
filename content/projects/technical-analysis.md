@@ -3,6 +3,7 @@ title = "Technical Study & Analysis"
 date = 2026-11-05
 draft = false
 weight = 3
+icon = "chart"
 category = "TECHNICAL ANALYSIS"
 year = "2025"
 status = "Portfolio Category"

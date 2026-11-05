@@ -1,10 +1,11 @@
-
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-
-  <rect width="100" height="100" rx="14" fill="#17283c"></rect>
-
-  <rect x="5" y="5" width="90" height="90" rx="10" fill="none" stroke="#ffffff" stroke-width="1.5"></rect>
-
-  <text x="50" y="59" font-family="Arial, sans-serif" font-size="34" font-weight="700" text-anchor="middle" fill="#ffffff">RB</text>
-
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4a5059"/>
+      <stop offset="1" stop-color="#0d0f12"/>
+    </linearGradient>
+  </defs>
+  <rect width="100" height="100" rx="24" fill="url(#g)"/>
+  <rect x="1.5" y="1.5" width="97" height="97" rx="22.5" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="2"/>
+  <path fill="#fff" d="M25 65.3H30.48V54.07H36.19L42.21 65.3H48.35L41.71 53.14C45.33 51.7 47.22 48.64 47.22 44.5C47.22 38.67 43.48 34.7 36.44 34.7H25ZM30.48 49.53V39.3H35.6C39.76 39.3 41.61 41.23 41.61 44.5C41.61 47.74 39.76 49.53 35.64 49.53Z M52.23 65.3H64.57C71.57 65.3 75 61.72 75 56.96C75 52.34 71.71 49.63 68.47 49.47V49.16C71.45 48.46 73.81 46.37 73.81 42.65C73.81 38.11 70.54 34.7 63.93 34.7H52.23ZM57.71 60.72V51.7H63.89C67.3 51.7 69.44 53.82 69.44 56.55C69.44 58.97 67.75 60.72 63.71 60.72ZM57.71 47.74V39.26H63.36C66.64 39.26 68.33 40.99 68.33 43.35C68.33 46.06 66.13 47.74 63.23 47.74Z"/>
 </svg>

@@ -3,6 +3,7 @@ title = "Environmental Engineering & Wastewater Treatment"
 date = 2026-11-05
 draft = false
 weight = 2
+icon = "water"
 category = "ENVIRONMENTAL ENGINEERING"
 year = "2025"
 status = "Academic & Technical Study"
