@@ -15,7 +15,7 @@
       </h1>
 
       <p class="lead hero-in" style="--i:2">
-        Saya Rizky Bintang, Civil Engineer yang berfokus pada perencanaan
+        Saya Rizky Bintang, Civil Engineer & Graphic Designer yang berfokus pada perencanaan
         infrastruktur, masterplanning, project development, dan visualisasi teknis.
       </p>
 
@@ -31,12 +31,9 @@
 
     <div class="hero-visual hero-in" style="--i:2">
       <span class="halo" aria-hidden="true"></span>
-
-      <!-- Chip di BELAKANG foto (ditaruh sebelum <picture>, z-index lebih rendah) -->
       <span class="chip chip-design glass">
         {{ partial "icon.html" "pen" }} Graphic Designer
       </span>
-
       <picture class="portrait">
         <source type="image/webp" srcset="{{ "images/profile.webp" | relURL }}">
         <img
@@ -54,6 +51,7 @@
       <span class="chip chip-role glass">
         {{ partial "icon.html" "layers" }} Civil Engineer
       </span>
+      
       <span class="chip chip-loc glass">
         {{ partial "icon.html" "pin" }} {{ .Site.Params.location }}
       </span>
