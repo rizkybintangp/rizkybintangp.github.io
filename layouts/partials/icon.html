@@ -32,6 +32,8 @@
 <rect x="4" y="4" width="6.5" height="6.5" rx="1.8"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.8"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.8"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.8"/>
 {{- else if eq $n "user" -}}
 <circle cx="12" cy="8.5" r="3.6"/><path d="M5 20c.6-3.6 3.5-5.6 7-5.6s6.4 2 7 5.6"/>
+{{- else if eq $n "pen" -}}
+<path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/>
 {{- else if eq $n "chat" -}}
 <path d="M4 19.5 5.2 15A8 8 0 1 1 9 18.8L4 19.5Z"/><path d="M9.2 9.6c.3 2 2.2 3.9 4.2 4.3"/>
 {{- end -}}

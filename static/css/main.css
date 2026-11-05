@@ -383,6 +383,8 @@ body.menu-open .menu-toggle span:nth-child(2) { transform: translateY(-4px) rota
 @keyframes mist-drift-r { from { transform: scaleX(-1) translate3d(0, 0, 0); } to { transform: scaleX(-1) translate3d(-900px, 0, 0); } }
 
 .chip-role, .chip-loc { position: absolute; z-index: 3; }
+/* Di belakang foto (foto z-index 1): sebagian chip tertutup leher/bahu */
+.chip-design { position: absolute; z-index: 0; top: 56%; left: -3%; }
 .chip-role { top: 9%; right: -6px; }
 .chip-loc { bottom: 14%; left: -6px; }
 
@@ -751,6 +753,7 @@ html.js .reveal:not(.is-visible) { opacity: 0; transform: translateY(16px); }
   .hero-visual { max-width: min(100%, 360px); }
   .chip-role { right: -2px; }
   .chip-loc { left: -2px; }
+  .chip-design { top: 47%; left: auto; right: -2px; }
 
   .bento { grid-template-columns: 1fr; }
   .tile-wide, .tile-narrow { grid-column: auto; }
