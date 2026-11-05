@@ -1,1 +1,132 @@
-{{ define "main" }}<main class="section-wrap section-block"><span class="section-number">PORTFOLIO / DETAIL</span><h1>{{ .Title }}</h1>{{ .Content }}</main>{{ end }}
+
+{{ define "main" }}
+
+<main class="project-detail section-wrap">
+
+  <!-- PROJECT HEADER -->
+  <header class="project-detail-header reveal">
+
+    <a class="text-link" href="{{ "/" | relURL }}#portfolio">
+      ← Back to portfolio
+    </a>
+
+    <span class="section-number">
+      PROJECT / {{ .Params.category | default "ENGINEERING" }}
+    </span>
+
+    <h1>{{ .Title }}</h1>
+
+    {{ with .Params.summary }}
+      <p class="project-detail-summary">{{ . }}</p>
+    {{ end }}
+
+    <div class="project-detail-meta">
+      {{ with .Params.category }}
+        <span>{{ . }}</span>
+      {{ end }}
+
+      {{ with .Params.year }}
+        <span>{{ . }}</span>
+      {{ end }}
+
+      {{ with .Params.status }}
+        <span>{{ . }}</span>
+      {{ end }}
+    </div>
+
+  </header>
+
+
+  <!-- PROJECT COVER -->
+  {{ with .Params.image }}
+
+    <figure class="project-detail-cover reveal">
+      <img
+        src="{{ . | relURL }}"
+        alt="{{ $.Title }}"
+        loading="eager"
+      >
+    </figure>
+
+  {{ end }}
+
+
+  <!-- PROJECT CONTENT -->
+  <div class="project-detail-layout">
+
+    <article class="project-detail-content reveal">
+
+      {{ .Content }}
+
+    </article>
+
+    <!-- PROJECT INFORMATION -->
+    <aside class="project-detail-sidebar reveal">
+
+      <span class="section-number">PROJECT INFORMATION</span>
+
+      {{ with .Params.role }}
+        <div>
+          <small>ROLE</small>
+          <p>{{ . }}</p>
+        </div>
+      {{ end }}
+
+      {{ with .Params.year }}
+        <div>
+          <small>YEAR</small>
+          <p>{{ . }}</p>
+        </div>
+      {{ end }}
+
+      {{ with .Params.tools }}
+        <div>
+          <small>TOOLS & METHODS</small>
+          <p>{{ delimit . ", " }}</p>
+        </div>
+      {{ end }}
+
+      {{ with .Params.scope }}
+        <div>
+          <small>SCOPE OF WORK</small>
+          <ul>
+            {{ range . }}
+              <li>{{ . }}</li>
+            {{ end }}
+          </ul>
+        </div>
+      {{ end }}
+
+    </aside>
+
+  </div>
+
+
+  <!-- PROJECT FOOTER -->
+  <footer class="project-detail-footer">
+
+    <span class="section-number">END OF PROJECT</span>
+
+    <h2>Interested in similar work?</h2>
+
+    <p>
+      Mari berdiskusi mengenai kebutuhan proyek,
+      kolaborasi, atau dukungan teknis.
+    </p>
+
+    <a
+      class="button button-dark"
+      href="mailto:{{ .Site.Params.email }}"
+    >
+      Discuss a project ↗
+    </a>
+
+    <a class="text-link" href="{{ "/" | relURL }}#portfolio">
+      Back to all projects ↑
+    </a>
+
+  </footer>
+
+</main>
+
+{{ end }}

@@ -1,22 +1,166 @@
+
 <!doctype html>
 <html lang="id">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="{{ .Site.Params.description }}">
-  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
+
+  <!-- PAGE TITLE -->
+  <title>
+    {{ if .IsHome }}
+      {{ .Site.Title }}
+    {{ else }}
+      {{ .Title }} · {{ .Site.Title }}
+    {{ end }}
+  </title>
+
+  <!-- SEO META -->
+  <meta name="author" content="{{ .Site.Params.author }}">
+
+  <meta name="description"
+        content="{{ .Description | default .Site.Params.description }}">
+
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="{{ .Permalink }}">
+
+  <!-- FAVICON -->
+  <link rel="icon"
+        type="image/svg+xml"
+        href="{{ "favicon.svg" | relURL }}">
+
+  <!-- OPEN GRAPH -->
+  <meta property="og:type"
+        content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+
+  <meta property="og:title"
+        content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}">
+
+  <meta property="og:description"
+        content="{{ .Description | default .Site.Params.description }}">
+
+  <meta property="og:url" content="{{ .Permalink }}">
+
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+
+  <meta property="og:image"
+        content="{{ "images/og-cover.jpg" | absURL }}">
+
+  <!-- TWITTER / X -->
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta name="twitter:title"
+        content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+
+  <meta name="twitter:description"
+        content="{{ .Description | default .Site.Params.description }}">
+
+  <meta name="twitter:image"
+        content="{{ "images/og-cover.jpg" | absURL }}">
+
+  <!-- GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- MAIN CSS -->
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+
 </head>
-<body>
-<header class="site-header"><a class="brand" href="{{ .Site.Home.RelPermalink }}"><span class="brand-mark">RB</span><span>RIZKY BINTANG<small>CIVIL ENGINEER</small></span></a><nav><a href="#about">About</a><a href="#expertise">Expertise</a><a href="#portfolio">Portfolio</a><a class="nav-contact" href="#contact">Let's talk <span>↗</span></a></nav><button class="menu-toggle" aria-label="Toggle menu" onclick="document.body.classList.toggle('menu-open')">☰</button></header>
-{{ block "main" . }}{{ end }}
-<footer class="site-footer">
+
+<body id="top">
+
+  <!-- FLOATING NAVBAR -->
+  <header class="site-header" id="siteHeader">
+
+    <!-- BRAND -->
+    <a class="brand" href="{{ .Site.Home.RelPermalink }}">
+
+      <span class="brand-mark">RB</span>
+
+      <span class="brand-text">
+        RIZKY BINTANG
+        <small>CIVIL ENGINEER</small>
+      </span>
+
+    </a>
+
+    <!-- NAVIGATION -->
+    <nav class="main-nav" id="mainNav">
+
+      <a href="{{ .Site.Home.RelPermalink }}#about">
+        About
+      </a>
+
+      <a href="{{ .Site.Home.RelPermalink }}#expertise">
+        Expertise
+      </a>
+
+      <a href="{{ .Site.Home.RelPermalink }}#portfolio">
+        Portfolio
+      </a>
+
+      <a class="nav-contact"
+         href="{{ .Site.Home.RelPermalink }}#contact">
+
+        Let's talk
+        <span>↗</span>
+
+      </a>
+
+    </nav>
+
+    <!-- MOBILE MENU BUTTON -->
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-controls="mainNav"
+      aria-expanded="false">
+
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </button>
+
+  </header>
+
+  <!-- MAIN CONTENT -->
+  {{ block "main" . }}
+  {{ end }}
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+
     <div class="section-wrap footer-inner">
-        <span>© {{ now.Year }} Rizky Bintang. All rights reserved.</span>
-        <span>Civil Engineering · Infrastructure Development</span>
-        <a href="#top">Back to top ↑</a>
+
+      <span>
+        © {{ now.Year }} Rizky Bintang. All rights reserved.
+      </span>
+
+      <span>
+        Civil Engineering · Infrastructure Development
+      </span>
+
+      <a href="#top">
+        Back to top ↑
+      </a>
+
     </div>
-</footer>
+
+  </footer>
+
+  <!-- MAIN JAVASCRIPT -->
+  <script src="{{ "js/main.js" | relURL }}" defer></script>
+
+</body>
+</html>
