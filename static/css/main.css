@@ -504,7 +504,7 @@ body.menu-open .menu-toggle span:nth-child(2) { transform: translateY(-4px) rota
   .project-feature .art-icon .icon { width: 54px; height: 54px; }
   .project-feature .project-info { flex-direction: column; justify-content: center; align-items: flex-start; gap: 28px; padding: clamp(28px, 4vw, 52px); }
   .project-feature .project-info h3 { font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2rem); letter-spacing: -.025em; line-height: 1.18; margin-bottom: 12px; }
-  .project-feature .project-info p { font-size: var(--fs-base); -webkit-line-clamp: unset; display: block; }
+  .project-feature .project-info p { font-size: var(--fs-base); -webkit-line-clamp: unset; line-clamp: unset; display: block; }
   .project-feature .go { width: 48px; height: 48px; }
 }
 
@@ -529,7 +529,7 @@ body.menu-open .menu-toggle span:nth-child(2) { transform: translateY(-4px) rota
 .project-info h3 { font-size: 1.1875rem; font-weight: 650; letter-spacing: -.015em; line-height: 1.3; margin-bottom: 6px; }
 .project-info p {
   font-size: var(--fs-sm); line-height: 1.6; color: var(--muted);
-  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
 .go {
   flex: none; width: 40px; height: 40px; display: grid; place-items: center;
