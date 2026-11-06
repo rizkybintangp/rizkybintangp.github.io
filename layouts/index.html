@@ -174,7 +174,7 @@
 
   </section>
 
-  <!-- DESIGN: karya desain grafis + software -->
+    <!-- DESIGN: karya desain grafis + software -->
   <section class="container section" id="design">
 
     <div class="section-head reveal">
@@ -187,27 +187,31 @@
       {{ range $i, $w := . }}
         {{ $tone := index (slice "blue" "teal" "lilac" "amber") (mod $i 4) }}
         {{ $ratio := $w.ratio | default "4/5" }}
+        {{ $style := printf "--ratio:%s; aspect-ratio:%s" $ratio $ratio }}
 
         {{ if $w.image }}
-        <button type="button" class="work glass reveal"
-                style="aspect-ratio: {{ $ratio | safeCSS }}"
-                data-full="{{ $w.image | relURL }}" data-title="{{ $w.title }}"
-                aria-label="Lihat karya: {{ $w.title }}">
-          <img src="{{ $w.image | relURL }}" alt="{{ $w.title }}" loading="lazy" decoding="async">
+          <button type="button" class="work glass reveal"
+                  style="{{ $style | safeCSS }}"
+                  data-full="{{ $w.image | relURL }}" data-title="{{ $w.title }}"
+                  aria-label="Lihat karya: {{ $w.title }}">
+            <img src="{{ $w.image | relURL }}" alt="{{ $w.title }}" loading="lazy" decoding="async">
+            <span class="work-cap">
+              <small>{{ $w.category }}</small>
+              <strong>{{ $w.title }}</strong>
+            </span>
+          </button>
         {{ else }}
-        <div class="work glass reveal" style="aspect-ratio: {{ $ratio | safeCSS }}">
-          <span class="work-art tone-{{ $tone }}" aria-hidden="true">
-            <span class="art-orb"></span>
-            <span class="art-icon">{{ partial "icon.html" ($w.icon | default "pen") }}</span>
-          </span>
+          <div class="work glass reveal" style="{{ $style | safeCSS }}">
+            <span class="work-art tone-{{ $tone }}" aria-hidden="true">
+              <span class="art-orb"></span>
+              <span class="art-icon">{{ partial "icon.html" ($w.icon | default "pen") }}</span>
+            </span>
+            <span class="work-cap">
+              <small>{{ $w.category }}</small>
+              <strong>{{ $w.title }}</strong>
+            </span>
+          </div>
         {{ end }}
-
-          <span class="work-cap">
-            <small>{{ $w.category }}</small>
-            <strong>{{ $w.title }}</strong>
-          </span>
-
-        {{ if $w.image }}</button>{{ else }}</div>{{ end }}
       {{ end }}
     </div>
     {{ end }}{{ end }}
@@ -220,11 +224,12 @@
 
     <div class="tools">
       {{ range . }}
+        {{ $badge := printf "--bg:%s; --fg:%s" (.bg | default "#333") (.fg | default "#fff") }}
         <div class="tool glass reveal">
           {{ with .logo }}
             <img class="tool-logo" src="{{ . | relURL }}" alt="" width="52" height="52" loading="lazy">
           {{ else }}
-            <span class="tool-badge" style="--bg: {{ .bg | default "#333" | safeCSS }}; --fg: {{ .fg | default "#fff" | safeCSS }}" aria-hidden="true">{{ .abbr }}</span>
+            <span class="tool-badge" style="{{ $badge | safeCSS }}" aria-hidden="true">{{ .abbr }}</span>
           {{ end }}
           <span class="tool-name">{{ .name }}</span>
         </div>
