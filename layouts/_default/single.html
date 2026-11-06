@@ -64,6 +64,36 @@
 
   </div>
 
+  {{ $slug := .File.ContentBaseName }}
+  {{ with hugo.Data.experiences }}{{ with index . $slug }}{{ with .items }}
+  <section class="exp" id="pengalaman" aria-labelledby="exp-title">
+
+    <div class="section-head reveal">
+      <h2 id="exp-title">Daftar pengalaman</h2>
+      <p>Pengalaman kerja pada bidang ini, dari yang terbaru.</p>
+    </div>
+
+    <ol class="timeline">
+      {{ range . }}
+      <li class="exp-item glass reveal">
+        <span class="exp-dot" aria-hidden="true"></span>
+        <div class="exp-top">
+          {{ with .period }}<span class="chip">{{ . }}</span>{{ end }}
+          {{ with .role }}<span class="exp-role">{{ . }}</span>{{ end }}
+        </div>
+        <h3>{{ .title }}</h3>
+        {{ with .org }}<p class="exp-org">{{ . }}</p>{{ end }}
+        {{ with .description }}<p class="exp-desc">{{ . }}</p>{{ end }}
+        {{ with .tags }}
+        <ul class="exp-tags">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+        {{ end }}
+      </li>
+      {{ end }}
+    </ol>
+
+  </section>
+  {{ end }}{{ end }}{{ end }}
+
   <section class="detail-cta glass reveal">
     <h2>Tertarik dengan pekerjaan serupa?</h2>
     <p>Mari berdiskusi mengenai kebutuhan proyek, kolaborasi, atau dukungan teknis.</p>

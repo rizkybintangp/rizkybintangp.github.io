@@ -1,0 +1,67 @@
+# ============================================================
+#  SOFTWARE YANG DIKUASAI  (bagian "Software proficiency")
+# ------------------------------------------------------------
+#  HAPUS blok yang tidak kamu kuasai, TAMBAH yang kamu pakai.
+#
+#  Dua jenis tampilan:
+#   a) Logo gambar :  logo = "images/software/figma.svg"
+#   b) Lencana huruf: kosongkan logo, isi abbr (1-2 huruf), bg (warna latar), fg (warna huruf)
+# ============================================================
+
+[[tools]]
+name = "AutoCAD"
+logo = "images/software/autocad.svg"
+
+[[tools]]
+name = "SketchUp"
+logo = "images/software/sketchup.svg"
+
+[[tools]]
+name = "QGIS"
+logo = "images/software/qgis.svg"
+
+[[tools]]
+name = "Microsoft Excel"
+abbr = "X"
+bg = "#217346"
+fg = "#ffffff"
+
+[[tools]]
+name = "PowerPoint"
+abbr = "P"
+bg = "#D24726"
+fg = "#ffffff"
+
+[[tools]]
+name = "Microsoft Word"
+abbr = "W"
+bg = "#2B579A"
+fg = "#ffffff"
+
+[[tools]]
+name = "Photoshop"
+abbr = "Ps"
+bg = "#001E36"
+fg = "#31A8FF"
+
+[[tools]]
+name = "Illustrator"
+abbr = "Ai"
+bg = "#330000"
+fg = "#FF9A00"
+
+[[tools]]
+name = "InDesign"
+abbr = "Id"
+bg = "#49021F"
+fg = "#FF3366"
+
+[[tools]]
+name = "Figma"
+logo = "images/software/figma.svg"
+
+[[tools]]
+name = "Canva"
+abbr = "Ca"
+bg = "linear-gradient(135deg, #00C4CC, #7D2AE8)"
+fg = "#ffffff"

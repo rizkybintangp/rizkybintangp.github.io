@@ -144,4 +144,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  /* 5. Lightbox karya desain */
+  const lightbox = document.getElementById("lightbox");
+  if (lightbox && typeof lightbox.showModal === "function") {
+    const lbImg = lightbox.querySelector("img");
+    const lbCap = lightbox.querySelector(".lightbox-cap");
+    document.querySelectorAll(".work[data-full]").forEach((work) => {
+      work.addEventListener("click", () => {
+        lbImg.src = work.dataset.full;
+        lbImg.alt = work.dataset.title || "";
+        lbCap.textContent = work.dataset.title || "";
+        lightbox.showModal();
+      });
+    });
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox || e.target.closest(".lightbox-close")) lightbox.close();
+    });
+  }
+
 });

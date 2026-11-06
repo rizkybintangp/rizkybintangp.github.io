@@ -15,7 +15,7 @@
       </h1>
 
       <p class="lead hero-in" style="--i:2">
-        Saya Rizky Bintang, Civil Engineer & Graphic Designer yang berfokus pada perencanaan
+        Saya Rizky Bintang, Civil Engineer &amp; Graphic Designer yang berfokus pada perencanaan
         infrastruktur, masterplanning, project development, dan visualisasi teknis.
       </p>
 
@@ -31,9 +31,12 @@
 
     <div class="hero-visual hero-in" style="--i:2">
       <span class="halo" aria-hidden="true"></span>
+
+      <!-- Chip di BELAKANG foto (ditaruh sebelum <picture>, z-index lebih rendah) -->
       <span class="chip chip-design glass">
         {{ partial "icon.html" "pen" }} Graphic Designer
       </span>
+
       <picture class="portrait">
         <source type="image/webp" srcset="{{ "images/profile.webp" | relURL }}">
         <img
@@ -51,7 +54,6 @@
       <span class="chip chip-role glass">
         {{ partial "icon.html" "layers" }} Civil Engineer
       </span>
-      
       <span class="chip chip-loc glass">
         {{ partial "icon.html" "pin" }} {{ .Site.Params.location }}
       </span>
@@ -166,9 +168,69 @@
     </div>
 
     <p class="note reveal">
-      Setiap halaman proyek menyajikan informasi mengenai pendekatan,
-      ruang lingkup, dan dokumentasi pekerjaan yang tersedia.
+      Klik salah satu kartu untuk melihat pendekatan, ruang lingkup, dan
+      daftar pengalaman pada bidang tersebut.
     </p>
+
+  </section>
+
+  <!-- DESIGN: karya desain grafis + software -->
+  <section class="container section" id="design">
+
+    <div class="section-head reveal">
+      <h2>Graphic design works</h2>
+      <p>Identitas visual, infografis, dan materi presentasi yang saya kerjakan.</p>
+    </div>
+
+    {{ with hugo.Data.design }}{{ with .works }}
+    <div class="works">
+      {{ range $i, $w := . }}
+        {{ $tone := index (slice "blue" "teal" "lilac" "amber") (mod $i 4) }}
+        {{ $ratio := $w.ratio | default "4/5" }}
+
+        {{ if $w.image }}
+        <button type="button" class="work glass reveal"
+                style="aspect-ratio: {{ $ratio | safeCSS }}"
+                data-full="{{ $w.image | relURL }}" data-title="{{ $w.title }}"
+                aria-label="Lihat karya: {{ $w.title }}">
+          <img src="{{ $w.image | relURL }}" alt="{{ $w.title }}" loading="lazy" decoding="async">
+        {{ else }}
+        <div class="work glass reveal" style="aspect-ratio: {{ $ratio | safeCSS }}">
+          <span class="work-art tone-{{ $tone }}" aria-hidden="true">
+            <span class="art-orb"></span>
+            <span class="art-icon">{{ partial "icon.html" ($w.icon | default "pen") }}</span>
+          </span>
+        {{ end }}
+
+          <span class="work-cap">
+            <small>{{ $w.category }}</small>
+            <strong>{{ $w.title }}</strong>
+          </span>
+
+        {{ if $w.image }}</button>{{ else }}</div>{{ end }}
+      {{ end }}
+    </div>
+    {{ end }}{{ end }}
+
+    {{ with hugo.Data.software }}{{ with .tools }}
+    <div class="section-head section-head-sub reveal">
+      <h2>Software proficiency</h2>
+      <p>Perangkat lunak yang saya gunakan untuk perencanaan, analisis, dan desain.</p>
+    </div>
+
+    <div class="tools">
+      {{ range . }}
+        <div class="tool glass reveal">
+          {{ with .logo }}
+            <img class="tool-logo" src="{{ . | relURL }}" alt="" width="52" height="52" loading="lazy">
+          {{ else }}
+            <span class="tool-badge" style="--bg: {{ .bg | default "#333" | safeCSS }}; --fg: {{ .fg | default "#fff" | safeCSS }}" aria-hidden="true">{{ .abbr }}</span>
+          {{ end }}
+          <span class="tool-name">{{ .name }}</span>
+        </div>
+      {{ end }}
+    </div>
+    {{ end }}{{ end }}
 
   </section>
 
@@ -210,4 +272,11 @@
   </section>
 
 </main>
+
+<!-- Pembesar gambar untuk karya desain -->
+<dialog class="lightbox" id="lightbox" aria-label="Pratinjau karya">
+  <button type="button" class="lightbox-close" aria-label="Tutup">{{ partial "icon.html" "x" }}</button>
+  <img alt="">
+  <p class="lightbox-cap"></p>
+</dialog>
 {{ end }}

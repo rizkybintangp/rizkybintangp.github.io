@@ -1,0 +1,54 @@
+# ============================================================
+#  KARYA DESAIN GRAFIS  (bagian "Graphic design works")
+# ------------------------------------------------------------
+#  Cara menambah karya:
+#   1. Simpan gambar di  static/images/design/   (mis. brand-01.jpg)
+#   2. Isi  image = "images/design/brand-01.jpg"
+#   3. Salin satu blok [[works]] untuk karya berikutnya.
+#
+#  ratio : bentuk gambar. Contoh "4/5" (tegak), "1/1" (kotak), "16/10" (lebar)
+#  image : kosongkan ("") untuk sementara -> tampil kartu abu-abu berikon
+#  icon  : hanya dipakai bila image kosong (pen, layers, cube, grid)
+# ============================================================
+
+[[works]]
+title = "Brand Identity (contoh)"
+category = "Branding"
+image = ""
+ratio = "4/5"
+icon = "pen"
+
+[[works]]
+title = "Infografis Teknis (contoh)"
+category = "Infografis"
+image = ""
+ratio = "16/10"
+icon = "layers"
+
+[[works]]
+title = "Poster Kegiatan (contoh)"
+category = "Poster"
+image = ""
+ratio = "1/1"
+icon = "grid"
+
+[[works]]
+title = "Desain Presentasi (contoh)"
+category = "Presentasi"
+image = ""
+ratio = "16/10"
+icon = "cube"
+
+[[works]]
+title = "Konten Media Sosial (contoh)"
+category = "Social Media"
+image = ""
+ratio = "4/5"
+icon = "pen"
+
+[[works]]
+title = "Layout Dokumen (contoh)"
+category = "Layout"
+image = ""
+ratio = "1/1"
+icon = "layers"

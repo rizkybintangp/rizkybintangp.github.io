@@ -1,0 +1,84 @@
+# ============================================================
+#  DAFTAR PENGALAMAN per halaman proyek
+# ------------------------------------------------------------
+#  Setiap bagian ([masterplanning], dst.) = satu halaman proyek.
+#  Nama bagian HARUS sama dengan nama file di content/projects/
+#  (tanpa .md). Setiap [[nama.items]] = satu pengalaman.
+#
+#  Menambah pengalaman: salin satu blok [[...items]], tempel di
+#  bawahnya, lalu ubah isinya. Urutan di file = urutan di halaman.
+#
+#  Semua isian di bawah masih CONTOH. Ganti sebelum dipublikasikan.
+# ============================================================
+
+[masterplanning]
+
+[[masterplanning.items]]
+title = "Contoh: Penyusunan Konsep Masterplan Kawasan"
+org = "Nama perusahaan / klien"
+period = "2024 – 2025"
+role = "Planning Engineer"
+description = "Ganti teks ini dengan uraian singkat pekerjaanmu: apa yang dikerjakan, tanggung jawabmu, dan hasil yang dicapai."
+tags = ["Masterplanning", "AutoCAD"]
+
+[[masterplanning.items]]
+title = "Contoh: Kajian Tata Letak dan Infrastruktur Dasar"
+org = "Nama perusahaan / klien"
+period = "2023 – 2024"
+role = "Technical Support"
+description = "Ganti teks ini dengan uraian singkat pekerjaanmu: apa yang dikerjakan, tanggung jawabmu, dan hasil yang dicapai."
+tags = ["Infrastructure", "Dokumentasi"]
+
+[investment-development]
+
+[[investment-development.items]]
+title = "Contoh: Studi Kelayakan Teknis Proyek"
+org = "Nama perusahaan / klien"
+period = "2024 – 2025"
+role = "Project Development"
+description = "Ganti teks ini dengan uraian singkat pekerjaanmu: apa yang dikerjakan, tanggung jawabmu, dan hasil yang dicapai."
+tags = ["Feasibility", "Excel"]
+
+[[investment-development.items]]
+title = "Contoh: Penyusunan Dokumen dan Presentasi Investasi"
+org = "Nama perusahaan / klien"
+period = "2023 – 2024"
+role = "Technical Writer"
+description = "Ganti teks ini dengan uraian singkat pekerjaanmu: apa yang dikerjakan, tanggung jawabmu, dan hasil yang dicapai."
+tags = ["PowerPoint", "Analisis"]
+
+[technical-analysis]
+
+[[technical-analysis.items]]
+title = "Contoh: Analisis Kebutuhan Teknis Proyek"
+org = "Nama perusahaan / klien"
+period = "2024 – 2025"
+role = "Technical Analyst"
+description = "Ganti teks ini dengan uraian singkat pekerjaanmu: apa yang dikerjakan, tanggung jawabmu, dan hasil yang dicapai."
+tags = ["Analisis", "Excel"]
+
+[[technical-analysis.items]]
+title = "Contoh: Studi Pendukung Perencanaan"
+org = "Nama perusahaan / klien"
+period = "2023 – 2024"
+role = "Technical Support"
+description = "Ganti teks ini dengan uraian singkat pekerjaanmu: apa yang dikerjakan, tanggung jawabmu, dan hasil yang dicapai."
+tags = ["Studi", "Dokumentasi"]
+
+[wastewater-treatment]
+
+[[wastewater-treatment.items]]
+title = "Contoh: Kajian Perencanaan Pengolahan Air Limbah"
+org = "Nama perusahaan / klien"
+period = "2024 – 2025"
+role = "Environmental Engineer"
+description = "Ganti teks ini dengan uraian singkat pekerjaanmu: apa yang dikerjakan, tanggung jawabmu, dan hasil yang dicapai."
+tags = ["Wastewater", "Kajian"]
+
+[[wastewater-treatment.items]]
+title = "Contoh: Penyusunan Dokumen Teknis Lingkungan"
+org = "Nama perusahaan / klien"
+period = "2023 – 2024"
+role = "Technical Support"
+description = "Ganti teks ini dengan uraian singkat pekerjaanmu: apa yang dikerjakan, tanggung jawabmu, dan hasil yang dicapai."
+tags = ["Lingkungan", "Dokumentasi"]
