@@ -174,12 +174,12 @@
 
   </section>
 
-    <!-- DESIGN: karya desain grafis + software -->
+  <!-- DESIGN: karya desain grafis + software -->
   <section class="container section" id="design">
 
     <div class="section-head reveal">
       <h2>Graphic design works</h2>
-      <p>Identitas visual, infografis, dan materi presentasi yang saya kerjakan.</p>
+      <p>Identitas visual, infografis, dan materi presentasi yang saya kerjakan. Klik kartu untuk melihat karyanya.</p>
     </div>
 
     {{ with hugo.Data.design }}{{ with .works }}
@@ -187,31 +187,35 @@
       {{ range $i, $w := . }}
         {{ $tone := index (slice "blue" "teal" "lilac" "amber") (mod $i 4) }}
         {{ $ratio := $w.ratio | default "4/5" }}
-        {{ $style := printf "--ratio:%s; aspect-ratio:%s" $ratio $ratio }}
+        {{ $style := printf "--ratio:%s" $ratio }}
+        {{ $icon := $w.icon | default "pen" }}
 
-        {{ if $w.image }}
-          <button type="button" class="work glass reveal"
-                  style="{{ $style | safeCSS }}"
-                  data-full="{{ $w.image | relURL }}" data-title="{{ $w.title }}"
-                  aria-label="Lihat karya: {{ $w.title }}">
-            <img src="{{ $w.image | relURL }}" alt="{{ $w.title }}" loading="lazy" decoding="async">
-            <span class="work-cap">
-              <small>{{ $w.category }}</small>
-              <strong>{{ $w.title }}</strong>
-            </span>
-          </button>
-        {{ else }}
-          <div class="work glass reveal" style="{{ $style | safeCSS }}">
+        {{/* Daftar gambar di pop-up: "images"; kalau kosong, pakai "image" (sampul) */}}
+        {{ $imgs := default (slice) $w.images }}
+        {{ if and (not $imgs) $w.image }}{{ $imgs = slice $w.image }}{{ end }}
+
+        <button type="button" class="work glass reveal"
+                style="{{ $style | safeCSS }}"
+                data-title="{{ $w.title }}" data-category="{{ $w.category }}"
+                aria-haspopup="dialog" aria-label="Buka karya: {{ $w.title }}">
+
+          {{ if $w.image }}
+            <img class="work-cover" src="{{ $w.image | relURL }}" alt="" loading="lazy" decoding="async">
+          {{ else }}
             <span class="work-art tone-{{ $tone }}" aria-hidden="true">
               <span class="art-orb"></span>
-              <span class="art-icon">{{ partial "icon.html" ($w.icon | default "pen") }}</span>
+              <span class="art-icon">{{ partial "icon.html" $icon }}</span>
             </span>
-            <span class="work-cap">
-              <small>{{ $w.category }}</small>
-              <strong>{{ $w.title }}</strong>
-            </span>
-          </div>
-        {{ end }}
+          {{ end }}
+
+          <span class="work-cap">
+            <small>{{ $w.category }}</small>
+            <strong>{{ $w.title }}</strong>
+          </span>
+
+          <template class="tpl-icon">{{ partial "icon.html" $icon }}</template>
+          <template class="tpl-images">{{ range $imgs }}<img src="{{ . | relURL }}" alt="{{ $w.title }}" decoding="async">{{ end }}</template>
+        </button>
       {{ end }}
     </div>
     {{ end }}{{ end }}
@@ -278,10 +282,18 @@
 
 </main>
 
-<!-- Pembesar gambar untuk karya desain -->
-<dialog class="lightbox" id="lightbox" aria-label="Pratinjau karya">
-  <button type="button" class="lightbox-close" aria-label="Tutup">{{ partial "icon.html" "x" }}</button>
-  <img alt="">
-  <p class="lightbox-cap"></p>
+<!-- Pop-up karya desain (kaca ala iOS 26) -->
+<dialog class="dmodal" id="designModal" aria-labelledby="dmTitle">
+  <div class="dm-head">
+    <span class="dm-icon" aria-hidden="true"></span>
+    <div class="dm-titles">
+      <h3 id="dmTitle"></h3>
+      <p id="dmCat"></p>
+    </div>
+    <button type="button" class="dm-close" aria-label="Tutup">{{ partial "icon.html" "x" }}</button>
+  </div>
+  <div class="dm-body">
+    <div class="gallery"></div>
+  </div>
 </dialog>
 {{ end }}

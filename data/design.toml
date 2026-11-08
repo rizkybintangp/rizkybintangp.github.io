@@ -1,20 +1,27 @@
 # ============================================================
 #  KARYA DESAIN GRAFIS  (bagian "Graphic design works")
 # ------------------------------------------------------------
-#  Cara menambah karya:
-#   1. Simpan gambar di  static/images/design/   (mis. brand-01.jpg)
-#   2. Isi  image = "images/design/brand-01.jpg"
-#   3. Salin satu blok [[works]] untuk karya berikutnya.
+#  Setiap [[works]] = SATU KARTU. Kalau kartu diklik, muncul
+#  pop-up berisi kumpulan gambar dari daftar "images".
 #
-#  ratio : bentuk gambar. Contoh "4/5" (tegak), "1/1" (kotak), "16/10" (lebar)
-#  image : kosongkan ("") untuk sementara -> tampil kartu abu-abu berikon
-#  icon  : hanya dipakai bila image kosong (pen, layers, cube, grid)
+#  Cara menambah gambar:
+#   1. Simpan semua gambar di  static/images/design/
+#      (mis. brand-01.jpg, brand-02.jpg, ...)
+#   2. Isi daftar images, pisahkan dengan koma:
+#        images = ["images/design/brand-01.jpg", "images/design/brand-02.jpg"]
+#   3. (Opsional) image = sampul kartu. Kalau kosong, kartu tampil
+#      abu-abu berikon, dan pop-up tetap menampilkan daftar images.
+#
+#  ratio : bentuk kartu. "4/5" (tegak), "1/1" (kotak), "16/10" (lebar)
+#  icon  : ikon di kartu & pop-up (pen, layers, cube, grid)
+#  Untuk karya/kartu baru: salin satu blok [[works]] di bawahnya.
 # ============================================================
 
 [[works]]
 title = "Brand Identity"
 category = "Branding"
 image = ""
+images = []
 ratio = "4/5"
 icon = "pen"
 
@@ -22,6 +29,7 @@ icon = "pen"
 title = "Infografis Teknis"
 category = "Infografis"
 image = ""
+images = []
 ratio = "16/10"
 icon = "layers"
 
@@ -29,6 +37,7 @@ icon = "layers"
 title = "Poster Kegiatan"
 category = "Poster"
 image = ""
+images = []
 ratio = "1/1"
 icon = "grid"
 
@@ -36,6 +45,7 @@ icon = "grid"
 title = "Desain Presentasi"
 category = "Presentasi"
 image = ""
+images = []
 ratio = "16/10"
 icon = "cube"
 
@@ -43,6 +53,7 @@ icon = "cube"
 title = "Konten Media Sosial"
 category = "Social Media"
 image = ""
+images = []
 ratio = "4/5"
 icon = "pen"
 
@@ -50,5 +61,6 @@ icon = "pen"
 title = "Layout Dokumen"
 category = "Layout"
 image = ""
+images = []
 ratio = "1/1"
 icon = "layers"

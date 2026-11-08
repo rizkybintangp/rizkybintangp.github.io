@@ -144,21 +144,113 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* 5. Lightbox karya desain */
-  const lightbox = document.getElementById("lightbox");
-  if (lightbox && typeof lightbox.showModal === "function") {
-    const lbImg = lightbox.querySelector("img");
-    const lbCap = lightbox.querySelector(".lightbox-cap");
-    document.querySelectorAll(".work[data-full]").forEach((work) => {
-      work.addEventListener("click", () => {
-        lbImg.src = work.dataset.full;
-        lbImg.alt = work.dataset.title || "";
-        lbCap.textContent = work.dataset.title || "";
-        lightbox.showModal();
+  /* 5. Pop-up karya desain (kaca ala iOS 26) */
+  const dm = document.getElementById("designModal");
+  if (dm && typeof dm.showModal === "function") {
+    const dmIcon = dm.querySelector(".dm-icon");
+    const dmTitle = dm.querySelector("#dmTitle");
+    const dmCat = dm.querySelector("#dmCat");
+    const dmClose = dm.querySelector(".dm-close");
+    const dmBody = dm.querySelector(".dm-body");
+    const gallery = dm.querySelector(".gallery");
+    const root = document.documentElement;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const ease = "cubic-bezier(.22, 1, .36, 1)";
+    const widths = [250, 310, 370, 280, 340, 230];
+    let closing = false;
+
+    /* Acak yang tetap (tidak berubah tiap dibuka) */
+    const rnd = (n) => { const x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
+
+    const build = (card, seed) => {
+      gallery.textContent = "";
+      const tpl = card.querySelector(".tpl-images");
+      const srcs = tpl ? Array.from(tpl.content.querySelectorAll("img")) : [];
+      if (!srcs.length) {
+        gallery.innerHTML = '<p class="dm-empty">Karya untuk bagian ini akan segera ditambahkan.</p>';
+        return [];
+      }
+      return srcs.map((node, i) => {
+        const k = seed * 31 + i;
+        const fig = document.createElement("figure");
+        fig.className = "thumb";
+        fig.style.setProperty("--w", widths[Math.floor(rnd(k + 1) * widths.length)] + "px");
+        fig.style.setProperty("--r", ((rnd(k + 7) - 0.5) * 7).toFixed(2) + "deg");
+        fig.style.setProperty("--y", Math.round((rnd(k + 13) - 0.5) * 44) + "px");
+        const img = node.cloneNode(true);
+        fig.appendChild(img);
+        gallery.appendChild(fig);
+        return img;
       });
+    };
+
+    const openModal = (card, seed) => {
+      closing = false;
+      dmTitle.textContent = card.dataset.title || "";
+      dmCat.textContent = card.dataset.category || "";
+      const ic = card.querySelector(".tpl-icon");
+      dmIcon.innerHTML = ic ? ic.innerHTML : "";
+      const thumbs = build(card, seed);
+
+      root.classList.add("modal-open");
+      dm.showModal();
+      dmBody.scrollTop = 0;
+      requestAnimationFrame(() => dm.classList.add("is-in"));
+
+      if (reduce.matches || !dm.animate) return;
+
+      /* Ikon "bergulir" naik dari kartu ke kepala pop-up, lalu judul menyusul */
+      const iconOnCard = card.querySelector(".art-icon");
+      const from = (iconOnCard || card).getBoundingClientRect();
+      const to = dmIcon.getBoundingClientRect();
+      const dx = from.left + from.width / 2 - (to.left + to.width / 2);
+      const dy = from.top + from.height / 2 - (to.top + to.height / 2);
+      const sc = iconOnCard ? from.width / to.width : 1.4;
+
+      dmIcon.animate(
+        [
+          { transform: `translate(${dx}px, ${dy}px) scale(${sc})`, opacity: 0 },
+          { opacity: 1, offset: 0.25 },
+          { transform: "none", opacity: 1 },
+        ],
+        { duration: 820, easing: ease, fill: "backwards" }
+      );
+      [dmTitle, dmCat].forEach((el, i) =>
+        el.animate(
+          [{ opacity: 0, transform: "translateX(-22px)" }, { opacity: 1, transform: "none" }],
+          { duration: 650, delay: 260 + i * 70, easing: ease, fill: "backwards" }
+        )
+      );
+      dmClose.animate(
+        [{ opacity: 0, transform: "scale(.5) rotate(-90deg)" }, { opacity: 1, transform: "none" }],
+        { duration: 600, delay: 340, easing: ease, fill: "backwards" }
+      );
+      thumbs.forEach((img, i) =>
+        img.animate(
+          [{ opacity: 0, transform: "translateY(46px) scale(.93)" }, { opacity: 1, transform: "none" }],
+          { duration: 700, delay: 380 + i * 80, easing: ease, fill: "backwards" }
+        )
+      );
+    };
+
+    const closeModal = () => {
+      if (closing || !dm.open) return;
+      closing = true;
+      dm.classList.remove("is-in");
+      setTimeout(() => dm.close(), reduce.matches ? 0 : 280);
+    };
+
+    dm.addEventListener("cancel", (e) => { e.preventDefault(); closeModal(); });   /* tombol Esc */
+    dm.addEventListener("click", (e) => { if (e.target === dm) closeModal(); });   /* klik area luar */
+    dmClose.addEventListener("click", closeModal);
+    dm.addEventListener("close", () => {
+      root.classList.remove("modal-open");
+      gallery.textContent = "";
+      closing = false;
     });
-    lightbox.addEventListener("click", (e) => {
-      if (e.target === lightbox || e.target.closest(".lightbox-close")) lightbox.close();
+
+    document.querySelectorAll(".work").forEach((card, i) => {
+      card.addEventListener("click", () => openModal(card, i + 1));
     });
   }
 
