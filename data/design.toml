@@ -61,6 +61,6 @@ icon = "pen"
 title = "Layout Dokumen"
 category = "Layout"
 image = ""
-images = ["images/design/brand-01.jpg", "images/design/brand-02.jpg"]
+images = ["images/design/brand-01.jpg", "images/design/brand-02.jpg", "images/design/brand-03.jpg"]
 ratio = "1/1"
 icon = "layers"
