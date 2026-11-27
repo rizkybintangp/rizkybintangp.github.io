@@ -5,39 +5,39 @@
   <section class="hero container" id="home">
 
     <div class="hero-copy">
-      <p class="pill pill-status hero-in" style="--i:0">
-        <span class="status-dot" aria-hidden="true"></span>
-        {{ .Site.Params.availability }}
-      </p>
+      <div class="hero-meta-row hero-in" style="--i:0">
+        <p class="pill pill-status">
+          <span class="status-dot" aria-hidden="true"></span>
+          {{ partial "t.html" (dict "id" `Terbuka untuk peluang freelance` "en" `Open to freelance opportunities`) }}
+        </p>
+      </div>
 
       <h1 class="hero-in" style="--i:1">
         Turning complex ideas into <span class="nowrap">real-world</span> infrastructure.
       </h1>
 
       <p class="lead hero-in" style="--i:2">
-        Saya Rizky Bintang, Civil Engineer &amp; Graphic Designer yang berfokus pada perencanaan
-        infrastruktur, masterplanning, project development, dan visualisasi teknis.
+        {{ partial "t.html" (dict "id" `Saya Rizky Bintang, Civil Engineer &amp; Graphic Designer yang berfokus pada perencanaan infrastruktur, masterplanning, project development, dan visualisasi teknis.` "en" `I’m Rizky Bintang, a Civil Engineer &amp; Graphic Designer focused on infrastructure planning, masterplanning, project development, and technical visualization.`) }}
       </p>
 
       <div class="actions hero-in" style="--i:3">
-        <a class="btn btn-primary" href="{{ "cv/Rizky_Bintang_Pratama_CV.pdf" | relURL }}" download>
-          Download CV {{ partial "icon.html" "download" }}
+        <a class="btn btn-primary btn-shine magnetic" href="{{ "cv/Rizky_Bintang_Pratama_CV.pdf" | relURL }}" download>
+          {{ partial "t.html" (dict "id" `Unduh CV` "en" `Download CV`) }} {{ partial "icon.html" "download" }}
         </a>
-        <a class="btn btn-glass glass" href="#portfolio">
-          Lihat portfolio {{ partial "icon.html" "arrow-right" }}
+        <a class="btn btn-glass glass magnetic" href="#portfolio">
+          {{ partial "t.html" (dict "id" `Lihat portofolio` "en" `View portfolio`) }} {{ partial "icon.html" "arrow-right" }}
         </a>
       </div>
     </div>
 
-    <div class="hero-visual hero-in" style="--i:2">
-      <span class="halo" aria-hidden="true"></span>
+    <div class="hero-visual hero-in" style="--i:2" data-parallax-stage>
+      <span class="halo" aria-hidden="true" data-depth="0.18"></span>
 
-      <!-- Chip di BELAKANG foto (ditaruh sebelum <picture>, z-index lebih rendah) -->
-      <span class="chip chip-design glass">
+      <span class="chip chip-design glass" data-depth="0.55">
         {{ partial "icon.html" "pen" }} Graphic Designer
       </span>
 
-      <picture class="portrait">
+      <picture class="portrait" data-depth="0.12">
         <source type="image/webp" srcset="{{ "images/profile.webp" | relURL }}">
         <img
           src="{{ "images/profile.png" | relURL }}"
@@ -46,15 +46,14 @@
           fetchpriority="high" decoding="async">
       </picture>
 
-      <!-- Kabut: menyamarkan potongan foto di bagian bawah & samping -->
       <div class="mist" aria-hidden="true">
         <i class="mist-a"></i><i class="mist-b"></i><i class="mist-c"></i>
       </div>
 
-      <span class="chip chip-role glass">
+      <span class="chip chip-role glass" data-depth="0.72">
         {{ partial "icon.html" "layers" }} Civil Engineer
       </span>
-      <span class="chip chip-loc glass">
+      <span class="chip chip-loc glass" data-depth="0.45">
         {{ partial "icon.html" "pin" }} {{ .Site.Params.location }}
       </span>
     </div>
@@ -63,11 +62,9 @@
 
   <!-- STATEMENT -->
   <section class="container statement-wrap">
-    <div class="statement glass reveal">
-      <p>
-        Menghubungkan <strong>engineering, strategy,</strong> dan
-        <strong>visual communication</strong> untuk membantu proyek bergerak
-        dari konsep menuju implementasi.
+    <div class="statement glass reveal" data-tilt data-tilt-max="2.5">
+      <p class="kinetic-quote" data-kinetic-text>
+        {{ partial "t.html" (dict "id" `Menghubungkan <strong>engineering, strategy,</strong> dan <strong>visual communication</strong> untuk membantu proyek bergerak dari konsep menuju implementasi.` "en" `Connecting <strong>engineering, strategy,</strong> and <strong>visual communication</strong> to help projects move from concept to implementation.`) }}
       </p>
     </div>
   </section>
@@ -76,41 +73,55 @@
   <section class="container section" id="expertise">
 
     <div class="section-head reveal">
-      <h2>Areas of expertise</h2>
-      <p>Kompetensi lintas disiplin untuk mendukung perencanaan dan pengembangan proyek.</p>
+      <div>
+        <h2>{{ partial "t.html" (dict "id" `Bidang keahlian` "en" `Areas of expertise`) }}</h2>
+      </div>
+      <p>{{ partial "t.html" (dict "id" `Kompetensi lintas disiplin untuk mendukung perencanaan dan pengembangan proyek.` "en" `Cross-disciplinary skills supporting project planning and development.`) }}</p>
     </div>
 
     <div class="bento">
 
-      <article class="tile glass tile-wide reveal">
-        <span class="app-icon tone-blue">{{ partial "icon.html" "layers" }}</span>
-        <div>
-          <h3>Infrastructure Planning</h3>
-          <p>Perencanaan kawasan, infrastruktur dasar, dan integrasi kebutuhan teknis.</p>
+      <article class="tile glass tile-wide reveal" data-tilt>
+        {{ partial "solid3d.html" "infra" }}
+        <div class="tile-top">
+          <span class="app-icon tone-blue">{{ partial "icon.html" "layers" }}</span>
+        </div>
+        <div class="tile-body">
+          <h3>{{ partial "t.html" (dict "id" `Perencanaan Infrastruktur` "en" `Infrastructure Planning`) }}</h3>
+          <p>{{ partial "t.html" (dict "id" `Perencanaan kawasan, infrastruktur dasar, dan integrasi kebutuhan teknis.` "en" `Area planning, basic infrastructure, and integration of technical requirements.`) }}</p>
         </div>
       </article>
 
-      <article class="tile glass tile-narrow reveal">
-        <span class="app-icon tone-teal">{{ partial "icon.html" "map" }}</span>
-        <div>
+      <article class="tile glass tile-narrow reveal" data-tilt>
+        {{ partial "solid3d.html" "masterplan" }}
+        <div class="tile-top">
+          <span class="app-icon tone-teal">{{ partial "icon.html" "map" }}</span>
+        </div>
+        <div class="tile-body">
           <h3>Masterplanning</h3>
-          <p>Pengembangan konsep kawasan, tata letak, dan strategi pengembangan bertahap.</p>
+          <p>{{ partial "t.html" (dict "id" `Pengembangan konsep kawasan, tata letak, dan strategi pengembangan bertahap.` "en" `Area concept development, layout, and phased development strategy.`) }}</p>
         </div>
       </article>
 
-      <article class="tile glass tile-narrow reveal">
-        <span class="app-icon tone-lilac">{{ partial "icon.html" "briefcase" }}</span>
-        <div>
-          <h3>Project Development</h3>
-          <p>Dukungan studi, analisis teknis, dan penyusunan dokumentasi proyek.</p>
+      <article class="tile glass tile-narrow reveal" data-tilt>
+        {{ partial "solid3d.html" "dev" }}
+        <div class="tile-top">
+          <span class="app-icon tone-lilac">{{ partial "icon.html" "briefcase" }}</span>
+        </div>
+        <div class="tile-body">
+          <h3>{{ partial "t.html" (dict "id" `Pengembangan Proyek` "en" `Project Development`) }}</h3>
+          <p>{{ partial "t.html" (dict "id" `Dukungan studi, analisis teknis, dan penyusunan dokumentasi proyek.` "en" `Study support, technical analysis, and project documentation.`) }}</p>
         </div>
       </article>
 
-      <article class="tile glass tile-wide reveal">
-        <span class="app-icon tone-amber">{{ partial "icon.html" "cube" }}</span>
-        <div>
-          <h3>Technical Visualization</h3>
-          <p>Visualisasi data, infografis teknis, presentasi, dan komunikasi desain.</p>
+      <article class="tile glass tile-wide reveal" data-tilt>
+        {{ partial "solid3d.html" "viz" }}
+        <div class="tile-top">
+          <span class="app-icon tone-amber">{{ partial "icon.html" "cube" }}</span>
+        </div>
+        <div class="tile-body">
+          <h3>{{ partial "t.html" (dict "id" `Visualisasi Teknis` "en" `Technical Visualization`) }}</h3>
+          <p>{{ partial "t.html" (dict "id" `Visualisasi data, infografis teknis, presentasi, dan komunikasi desain.` "en" `Data visualization, technical infographics, presentations, and design communication.`) }}</p>
         </div>
       </article>
 
@@ -121,8 +132,10 @@
   <section class="container section" id="portfolio">
 
     <div class="section-head reveal">
-      <h2>Selected projects</h2>
-      <p>Pilihan bidang pekerjaan, studi teknis, dan pengembangan infrastruktur.</p>
+      <div>
+        <h2>{{ partial "t.html" (dict "id" `Proyek pilihan` "en" `Selected projects`) }}</h2>
+      </div>
+      <p>{{ partial "t.html" (dict "id" `Pilihan bidang pekerjaan, studi teknis, dan pengembangan infrastruktur.` "en" `Selected fields of work, technical studies, and infrastructure development.`) }}</p>
     </div>
 
     {{ $others := sub (len (where site.RegularPages "Section" "projects")) 1 }}
@@ -133,26 +146,32 @@
 
       {{ range $index, $project := $projects }}
         {{ $tone := index $tones (mod $index 4) }}
+        {{ $picon := $project.Params.icon | default "layers" }}
 
         <a href="{{ $project.RelPermalink }}"
-           class="project-card glass {{ if eq $index 0 }}project-feature{{ end }} reveal">
+           class="project-card glass {{ if eq $index 0 }}project-feature{{ end }} reveal"
+           data-tilt data-tilt-max="3.5">
 
           <div class="project-art tone-{{ $tone }}">
             {{ with $project.Params.image }}
               <img src="{{ . | relURL }}" alt="{{ $project.Title }}" loading="lazy" decoding="async">
             {{ else }}
               <span class="art-orb" aria-hidden="true"></span>
+              {{ partial "motion-art.html" (printf "proj-%s" $picon) }}
               <span class="art-icon" aria-hidden="true">
-                {{ partial "icon.html" ($project.Params.icon | default "layers") }}
+                {{ partial "icon.html" $picon }}
               </span>
             {{ end }}
             <span class="pill pill-art">{{ $project.Params.category | lower | title }}</span>
+            {{ with $project.Params.year }}
+              <span class="pill pill-year">{{ . }}</span>
+            {{ end }}
           </div>
 
           <div class="project-info">
             <div>
               <h3>{{ $project.Title }}</h3>
-              <p>{{ $project.Params.summary }}</p>
+              <p>{{ partial "t.html" (dict "id" $project.Params.summary "en" ($project.Params.summary_en | default $project.Params.summary)) }}</p>
             </div>
             <span class="go" aria-hidden="true">{{ partial "icon.html" "arrow-up-right" }}</span>
           </div>
@@ -160,47 +179,53 @@
         </a>
 
       {{ else }}
-
         <p>Project portfolio sedang dipersiapkan.</p>
-
       {{ end }}
 
     </div>
 
     <p class="note reveal">
-      Klik salah satu kartu untuk melihat pendekatan, ruang lingkup, dan
-      daftar pengalaman pada bidang tersebut.
+      {{ partial "t.html" (dict "id" `Klik salah satu kartu untuk melihat pendekatan, ruang lingkup, dan daftar pengalaman pada bidang tersebut.` "en" `Click a card to see the approach, scope, and experience in that field.`) }}
     </p>
 
   </section>
 
-  <!-- DESIGN: karya desain grafis + software -->
+  <!-- DESIGN -->
   <section class="container section" id="design">
 
     <div class="section-head reveal">
-      <h2>Graphic design works</h2>
-      <p>Identitas visual, infografis, dan materi presentasi yang saya kerjakan. Klik kartu untuk melihat karyanya.</p>
+      <div>
+        <h2>{{ partial "t.html" (dict "id" `Karya desain grafis` "en" `Graphic design works`) }}</h2>
+      </div>
+      <p>{{ partial "t.html" (dict "id" `Identitas visual, infografis, dan materi presentasi yang saya kerjakan. Klik kartu untuk melihat karyanya.` "en" `Visual identity, infographics, and presentation materials I’ve worked on. Click a card to view the work.`) }}</p>
     </div>
 
     {{ with hugo.Data.design }}{{ with .works }}
-    <div class="works">
+
+    <div class="works" id="designGrid">
       {{ range $i, $w := . }}
         {{ $tone := index (slice "blue" "teal" "lilac" "amber") (mod $i 4) }}
         {{ $ratio := $w.ratio | default "4/5" }}
-        {{ $style := printf "--ratio:%s" $ratio }}
+        {{ $style := "" }}
         {{ $icon := $w.icon | default "pen" }}
 
-        {{/* Daftar gambar di pop-up: "images"; kalau kosong, pakai "image" (sampul) */}}
         {{ $imgs := default (slice) $w.images }}
         {{ if and (not $imgs) $w.image }}{{ $imgs = slice $w.image }}{{ end }}
+        {{ $count := len $imgs }}
 
         <button type="button" class="work glass reveal"
                 style="{{ $style | safeCSS }}"
+                data-tilt data-tilt-max="4"
                 data-title="{{ $w.title }}" data-category="{{ $w.category }}"
+                data-cat-slug="{{ $w.category | urlize }}"
                 aria-haspopup="dialog" aria-label="Buka karya: {{ $w.title }}">
 
           {{ if $w.image }}
             <img class="work-cover" src="{{ $w.image | relURL }}" alt="" loading="lazy" decoding="async">
+          {{ else if gt $count 0 }}
+            <span class="work-collage" aria-hidden="true">
+              {{ range first 3 $imgs }}<img src="{{ . | relURL }}" alt="" loading="lazy" decoding="async">{{ end }}
+            </span>
           {{ else }}
             <span class="work-art tone-{{ $tone }}" aria-hidden="true">
               <span class="art-orb"></span>
@@ -208,9 +233,16 @@
             </span>
           {{ end }}
 
+          {{ if gt $count 0 }}
+            <span class="work-count" aria-hidden="true">{{ $count }} {{ partial "t.html" (dict "id" `karya` "en" `works`) }}</span>
+          {{ end }}
+
           <span class="work-cap">
-            <small>{{ $w.category }}</small>
-            <strong>{{ $w.title }}</strong>
+            <span class="work-cap-text">
+              <small>{{ $w.category }}</small>
+              <strong>{{ $w.title }}</strong>
+            </span>
+            <span class="work-open-dot" aria-hidden="true">{{ partial "icon.html" "zoom-in" }}</span>
           </span>
 
           <template class="tpl-icon">{{ partial "icon.html" $icon }}</template>
@@ -222,20 +254,22 @@
 
     {{ with hugo.Data.software }}{{ with .tools }}
     <div class="section-head section-head-sub reveal">
-      <h2>Software proficiency</h2>
-      <p>Perangkat lunak yang saya gunakan untuk perencanaan, analisis, dan desain.</p>
+      <div>
+        <h2>{{ partial "t.html" (dict "id" `Keahlian software` "en" `Software proficiency`) }}</h2>
+      </div>
+      <p>{{ partial "t.html" (dict "id" `Perangkat lunak yang saya gunakan untuk perencanaan, analisis, dan desain.` "en" `Software I use for planning, analysis, and design.`) }}</p>
     </div>
 
     <div class="tools">
-      {{ range . }}
-        {{ $badge := printf "--bg:%s; --fg:%s" (.bg | default "#333") (.fg | default "#fff") }}
-        <div class="tool glass reveal">
-          {{ with .logo }}
+      {{ range $idx, $t := . }}
+        {{ $badge := printf "--bg:%s; --fg:%s" ($t.bg | default "#333") ($t.fg | default "#fff") }}
+        <div class="tool glass reveal" style="--d: {{ mul (mod $idx 6) 55 }}ms" >
+          {{ with $t.logo }}
             <img class="tool-logo" src="{{ . | relURL }}" alt="" width="52" height="52" loading="lazy">
           {{ else }}
-            <span class="tool-badge" style="{{ $badge | safeCSS }}" aria-hidden="true">{{ .abbr }}</span>
+            <span class="tool-badge" style="{{ $badge | safeCSS }}" aria-hidden="true">{{ $t.abbr }}</span>
           {{ end }}
-          <span class="tool-name">{{ .name }}</span>
+          <span class="tool-name">{{ $t.name }}</span>
         </div>
       {{ end }}
     </div>
@@ -246,16 +280,16 @@
   <!-- ABOUT -->
   <section class="container section-tight ice-stage ice-stage-light" id="about">
     <div class="about ice ice-light reveal">
-      <h2>Engineering perspective. Creative execution.</h2>
+      <div>
+        <span class="eyebrow">{{ partial "t.html" (dict "id" `Tentang` "en" `About`) }}</span>
+        <h2>{{ partial "t.html" (dict "id" `Perspektif rekayasa. Eksekusi kreatif.` "en" `Engineering perspective. Creative execution.`) }}</h2>
+      </div>
       <div class="about-body">
         <p>
-          Saya percaya solusi infrastruktur yang baik membutuhkan ketelitian teknis
-          sekaligus kemampuan menyampaikan ide secara jelas. Saya terbuka untuk
-          kolaborasi dengan konsultan, perusahaan, tim proyek, dan klien yang
-          membutuhkan dukungan perencanaan maupun komunikasi teknis.
+          {{ partial "t.html" (dict "id" `Saya percaya solusi infrastruktur yang baik membutuhkan ketelitian teknis sekaligus kemampuan menyampaikan ide secara jelas. Saya terbuka untuk kolaborasi dengan konsultan, perusahaan, tim proyek, dan klien yang membutuhkan dukungan perencanaan maupun komunikasi teknis.` "en" `I believe good infrastructure solutions need technical rigor as well as the ability to communicate ideas clearly. I’m open to collaborating with consultants, companies, project teams, and clients who need planning or technical communication support.`) }}
         </p>
         <a class="text-link" href="mailto:{{ .Site.Params.email }}">
-          Diskusikan proyek {{ partial "icon.html" "arrow-right" }}
+          {{ partial "t.html" (dict "id" `Diskusikan proyek` "en" `Discuss a project`) }} {{ partial "icon.html" "arrow-right" }}
         </a>
       </div>
     </div>
@@ -264,10 +298,11 @@
   <!-- CONTACT -->
   <section class="container section-tight ice-stage ice-stage-dark" id="contact">
     <div class="contact ice ice-dark reveal">
-      <h2>Have a project in mind?</h2>
-      <p>Mari berdiskusi tentang kebutuhan proyek, kolaborasi, atau peluang freelance.</p>
+      <span class="eyebrow eyebrow-light">{{ partial "t.html" (dict "id" `Mari Berkolaborasi` "en" `Let's Collaborate`) }}</span>
+      <h2>{{ partial "t.html" (dict "id" `Punya proyek dalam pikiran?` "en" `Have a project in mind?`) }}</h2>
+      <p>{{ partial "t.html" (dict "id" `Mari berdiskusi tentang kebutuhan proyek, kolaborasi, atau peluang freelance.` "en" `Let’s talk about your project needs, collaboration, or freelance opportunities.`) }}</p>
       <div class="actions">
-        <a class="btn btn-light" href="mailto:{{ .Site.Params.email }}">
+        <a class="btn btn-light magnetic" href="mailto:{{ .Site.Params.email }}">
           {{ partial "icon.html" "mail" }} Email
         </a>
         <a class="btn btn-frost" href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener">
@@ -282,7 +317,7 @@
 
 </main>
 
-<!-- Pop-up karya desain (kaca ala iOS 26) -->
+<!-- Pop-up karya desain + Lightbox zoom -->
 <dialog class="dmodal" id="designModal" aria-labelledby="dmTitle">
   <div class="dm-head">
     <span class="dm-icon" aria-hidden="true"></span>
@@ -294,6 +329,15 @@
   </div>
   <div class="dm-body">
     <div class="gallery"></div>
+  </div>
+  <div class="dm-lightbox" id="dmLightbox" hidden aria-label="Pratinjau gambar layar penuh">
+    <button type="button" class="lb-btn lb-prev" aria-label="Gambar sebelumnya">{{ partial "icon.html" "chevron-left" }}</button>
+    <figure class="lb-stage">
+      <img id="lbImg" src="" alt="">
+      <figcaption id="lbCaption"></figcaption>
+    </figure>
+    <button type="button" class="lb-btn lb-next" aria-label="Gambar berikutnya">{{ partial "icon.html" "chevron-right" }}</button>
+    <button type="button" class="lb-btn lb-close" aria-label="Tutup pratinjau">{{ partial "icon.html" "x" }}</button>
   </div>
 </dialog>
 {{ end }}

@@ -8,6 +8,9 @@
 #  Menambah pengalaman: salin satu blok [[...items]], tempel di
 #  bawahnya, lalu ubah isinya. Urutan di file = urutan di halaman.
 #
+#  Versi Inggris: tambahkan title_en, org_en, description_en (opsional;
+#  kalau kosong, teks Indonesia dipakai di kedua bahasa).
+#
 #  Semua isian di bawah masih CONTOH. Ganti sebelum dipublikasikan.
 # ============================================================
 
@@ -15,70 +18,94 @@
 
 [[masterplanning.items]]
 title = "Penyusunan Konsep Masterplan Kawasan"
+title_en = "Area Masterplan Concept Preparation"
 org = "Nama perusahaan / klien"
+org_en = "Company / client name"
 period = "2024 – 2025"
 role = "Planning Engineer"
 description = "Ganti teks ini dengan uraian singkat pekerjaanmu: apa yang dikerjakan, tanggung jawabmu, dan hasil yang dicapai."
+description_en = "Replace this text with a short description of your work: what you did, your responsibilities, and the results achieved."
 tags = ["Masterplanning", "AutoCAD"]
 
 [[masterplanning.items]]
 title = "Kajian Tata Letak dan Infrastruktur Dasar"
+title_en = "Layout and Basic Infrastructure Study"
 org = "Nama perusahaan / klien"
+org_en = "Company / client name"
 period = "2023 – 2024"
 role = "Technical Support"
 description = "Ganti teks ini dengan uraian singkat pekerjaanmu: apa yang dikerjakan, tanggung jawabmu, dan hasil yang dicapai."
+description_en = "Replace this text with a short description of your work: what you did, your responsibilities, and the results achieved."
 tags = ["Infrastructure", "Dokumentasi"]
 
 [investment-development]
 
 [[investment-development.items]]
 title = "Studi Kelayakan Teknis Proyek"
+title_en = "Project Technical Feasibility Study"
 org = "Nama perusahaan / klien"
+org_en = "Company / client name"
 period = "2024 – 2025"
 role = "Project Development"
 description = "Ganti teks ini dengan uraian singkat pekerjaanmu: apa yang dikerjakan, tanggung jawabmu, dan hasil yang dicapai."
+description_en = "Replace this text with a short description of your work: what you did, your responsibilities, and the results achieved."
 tags = ["Feasibility", "Excel"]
 
 [[investment-development.items]]
 title = "Penyusunan Dokumen dan Presentasi Investasi"
+title_en = "Investment Document and Presentation Preparation"
 org = "Nama perusahaan / klien"
+org_en = "Company / client name"
 period = "2023 – 2024"
 role = "Technical Writer"
 description = "Ganti teks ini dengan uraian singkat pekerjaanmu: apa yang dikerjakan, tanggung jawabmu, dan hasil yang dicapai."
+description_en = "Replace this text with a short description of your work: what you did, your responsibilities, and the results achieved."
 tags = ["PowerPoint", "Analisis"]
 
 [technical-analysis]
 
 [[technical-analysis.items]]
 title = "Analisis Kebutuhan Teknis Proyek"
+title_en = "Project Technical Needs Analysis"
 org = "Nama perusahaan / klien"
+org_en = "Company / client name"
 period = "2024 – 2025"
 role = "Technical Analyst"
 description = "Ganti teks ini dengan uraian singkat pekerjaanmu: apa yang dikerjakan, tanggung jawabmu, dan hasil yang dicapai."
+description_en = "Replace this text with a short description of your work: what you did, your responsibilities, and the results achieved."
 tags = ["Analisis", "Excel"]
 
 [[technical-analysis.items]]
 title = "Studi Pendukung Perencanaan"
+title_en = "Planning Support Study"
 org = "Nama perusahaan / klien"
+org_en = "Company / client name"
 period = "2023 – 2024"
 role = "Technical Support"
 description = "Ganti teks ini dengan uraian singkat pekerjaanmu: apa yang dikerjakan, tanggung jawabmu, dan hasil yang dicapai."
+description_en = "Replace this text with a short description of your work: what you did, your responsibilities, and the results achieved."
 tags = ["Studi", "Dokumentasi"]
 
 [wastewater-treatment]
 
 [[wastewater-treatment.items]]
 title = "Kajian Perencanaan Pengolahan Air Limbah"
+title_en = "Wastewater Treatment Planning Study"
 org = "Nama perusahaan / klien"
+org_en = "Company / client name"
 period = "2024 – 2025"
 role = "Environmental Engineer"
 description = "Ganti teks ini dengan uraian singkat pekerjaanmu: apa yang dikerjakan, tanggung jawabmu, dan hasil yang dicapai."
+description_en = "Replace this text with a short description of your work: what you did, your responsibilities, and the results achieved."
 tags = ["Wastewater", "Kajian"]
 
 [[wastewater-treatment.items]]
 title = "Penyusunan Dokumen Teknis Lingkungan"
+title_en = "Environmental Technical Document Preparation"
 org = "Nama perusahaan / klien"
+org_en = "Company / client name"
 period = "2023 – 2024"
 role = "Technical Support"
 description = "Ganti teks ini dengan uraian singkat pekerjaanmu: apa yang dikerjakan, tanggung jawabmu, dan hasil yang dicapai."
+description_en = "Replace this text with a short description of your work: what you did, your responsibilities, and the results achieved."
 tags = ["Lingkungan", "Dokumentasi"]

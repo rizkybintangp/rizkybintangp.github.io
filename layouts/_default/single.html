@@ -5,7 +5,7 @@
   <header class="detail-header reveal">
 
     <a class="btn btn-glass btn-sm glass" href="{{ "/" | relURL }}#portfolio">
-      {{ partial "icon.html" "chevron-left" }} Semua proyek
+      {{ partial "icon.html" "chevron-left" }} {{ partial "t.html" (dict "id" `Semua proyek` "en" `All projects`) }}
     </a>
 
     {{ with .Params.category }}
@@ -15,7 +15,7 @@
     <h1>{{ .Title }}</h1>
 
     {{ with .Params.summary }}
-      <p class="lead">{{ . }}</p>
+      <p class="lead">{{ partial "t.html" (dict "id" . "en" ($.Params.summary_en | default .)) }}</p>
     {{ end }}
 
     <div class="detail-meta">
@@ -39,23 +39,23 @@
 
     <aside class="detail-sidebar glass reveal" aria-label="Informasi proyek">
 
-      <h2>Informasi proyek</h2>
+      <h2>{{ partial "t.html" (dict "id" `Informasi proyek` "en" `Project information`) }}</h2>
 
       {{ with .Params.role }}
-        <div><small>Peran</small><p>{{ . }}</p></div>
+        <div><small>{{ partial "t.html" (dict "id" `Peran` "en" `Role`) }}</small><p>{{ . }}</p></div>
       {{ end }}
 
       {{ with .Params.year }}
-        <div><small>Tahun</small><p>{{ . }}</p></div>
+        <div><small>{{ partial "t.html" (dict "id" `Tahun` "en" `Year`) }}</small><p>{{ . }}</p></div>
       {{ end }}
 
       {{ with .Params.tools }}
-        <div><small>Tools &amp; metode</small><p>{{ delimit . ", " }}</p></div>
+        <div><small>{{ partial "t.html" (dict "id" `Tools &amp; metode` "en" `Tools &amp; methods`) }}</small><p>{{ delimit . ", " }}</p></div>
       {{ end }}
 
       {{ with .Params.scope }}
         <div>
-          <small>Ruang lingkup</small>
+          <small>{{ partial "t.html" (dict "id" `Ruang lingkup` "en" `Scope`) }}</small>
           <ul>{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
         </div>
       {{ end }}
@@ -69,21 +69,25 @@
   <section class="exp" id="pengalaman" aria-labelledby="exp-title">
 
     <div class="section-head reveal">
-      <h2 id="exp-title">Daftar pengalaman</h2>
-      <p>Pengalaman kerja pada bidang ini, dari yang terbaru.</p>
+      <div>
+        <span class="eyebrow">Track Record</span>
+        <h2 id="exp-title">{{ partial "t.html" (dict "id" `Daftar pengalaman` "en" `Experience`) }}</h2>
+      </div>
+      <p>{{ partial "t.html" (dict "id" `Pengalaman kerja pada bidang ini, dari yang terbaru.` "en" `Work experience in this field, most recent first.`) }}</p>
     </div>
 
-    <ol class="timeline">
-      {{ range . }}
-      <li class="exp-item glass reveal">
+    <ol class="timeline" data-timeline>
+      <span class="timeline-progress" aria-hidden="true"></span>
+      {{ range $item := . }}
+      <li class="exp-item glass reveal" data-tilt data-tilt-max="2.5">
         <span class="exp-dot" aria-hidden="true"></span>
         <div class="exp-top">
           {{ with .period }}<span class="chip">{{ . }}</span>{{ end }}
-          {{ with .role }}<span class="exp-role">{{ . }}</span>{{ end }}
+          {{ with .role }}<span class="exp-role">{{ partial "t.html" (dict "id" . "en" ($item.role_en | default .)) }}</span>{{ end }}
         </div>
-        <h3>{{ .title }}</h3>
-        {{ with .org }}<p class="exp-org">{{ . }}</p>{{ end }}
-        {{ with .description }}<p class="exp-desc">{{ . }}</p>{{ end }}
+        <h3>{{ partial "t.html" (dict "id" .title "en" (.title_en | default .title)) }}</h3>
+        {{ with .org }}<p class="exp-org">{{ partial "t.html" (dict "id" . "en" ($item.org_en | default .)) }}</p>{{ end }}
+        {{ with .description }}<p class="exp-desc">{{ partial "t.html" (dict "id" . "en" ($item.description_en | default .)) }}</p>{{ end }}
         {{ with .tags }}
         <ul class="exp-tags">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
         {{ end }}
@@ -95,14 +99,14 @@
   {{ end }}{{ end }}{{ end }}
 
   <section class="detail-cta glass reveal">
-    <h2>Tertarik dengan pekerjaan serupa?</h2>
-    <p>Mari berdiskusi mengenai kebutuhan proyek, kolaborasi, atau dukungan teknis.</p>
+    <h2>{{ partial "t.html" (dict "id" `Tertarik dengan pekerjaan serupa?` "en" `Interested in similar work?`) }}</h2>
+    <p>{{ partial "t.html" (dict "id" `Mari berdiskusi mengenai kebutuhan proyek, kolaborasi, atau dukungan teknis.` "en" `Let’s discuss your project needs, collaboration, or technical support.`) }}</p>
     <div class="actions">
-      <a class="btn btn-primary" href="mailto:{{ .Site.Params.email }}">
-        {{ partial "icon.html" "mail" }} Diskusikan proyek
+      <a class="btn btn-primary btn-shine magnetic" href="mailto:{{ .Site.Params.email }}">
+        {{ partial "icon.html" "mail" }} {{ partial "t.html" (dict "id" `Diskusikan proyek` "en" `Discuss a project`) }}
       </a>
       <a class="btn btn-glass glass" href="{{ "/" | relURL }}#portfolio">
-        Kembali ke portfolio
+        {{ partial "t.html" (dict "id" `Kembali ke portofolio` "en" `Back to portfolio`) }}
       </a>
     </div>
   </section>

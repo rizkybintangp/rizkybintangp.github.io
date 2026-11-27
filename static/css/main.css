@@ -261,7 +261,7 @@ p { text-wrap: pretty; }
 .brand-text small { font-size: .75rem; color: var(--muted); font-weight: 500; }
 
 /* Menu: ikon + label, penanda aktif berupa pill yang meluncur */
-.main-nav { position: relative; display: flex; align-items: center; gap: 2px; }
+.main-nav { position: relative; display: flex; align-items: center; gap: 2px; margin-left: auto; }
 .main-nav a {
   position: relative; z-index: 1;
   display: inline-flex; align-items: center; gap: 8px;
@@ -641,14 +641,12 @@ body.menu-open .menu-toggle span:nth-child(2) { transform: translateY(-4px) rota
 
 
 /* ---------- Graphic design works ---------- */
-.works { columns: 3; column-gap: 20px; }
-@media (min-width: 1300px) { .works { columns: 4; } }
+.works { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .work {
-  position: relative; display: block; width: 100%; margin: 0 0 20px; padding: 0;
-  break-inside: avoid; overflow: hidden; border-radius: var(--r-lg);
+  position: relative; display: block; width: 100%; margin: 0; padding: 0; overflow: hidden; border-radius: var(--r-lg);
   font: inherit; color: inherit; text-align: left;
 }
-button.work { cursor: pointer; aspect-ratio: var(--ratio, 4 / 5); }
+button.work { cursor: pointer; aspect-ratio: 4 / 3; }
 .work-cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
 .work-art {
   position: absolute; inset: 0; display: grid; place-items: center; padding-bottom: 76px;
@@ -755,20 +753,17 @@ html.modal-open { overflow: hidden; }
   padding: 18px 28px 40px; scrollbar-width: thin; scrollbar-color: rgba(18, 20, 23, .25) transparent;
 }
 
-/* Thumbnail: acak, sedikit miring dan bergeser (desktop) */
-.gallery { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 26px 20px; }
-.thumb {
-  width: var(--w, 280px); max-width: 100%; margin: 0;
-  transform: translateY(var(--y, 0)) rotate(var(--r, 0deg));
-  transition: transform .5s var(--ease);
-}
+/* Thumbnail: grid rapi, ukuran seragam */
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 22px; }
+.thumb { margin: 0; cursor: zoom-in; }
 .thumb img {
-  display: block; width: 100%; height: auto; border-radius: 20px;
+  display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, .85);
   box-shadow: 0 22px 40px -22px rgba(18, 24, 36, .55), 0 2px 6px rgba(18, 24, 36, .08);
+  transition: transform .45s var(--ease), box-shadow .45s var(--ease);
 }
 @media (hover: hover) and (pointer: fine) {
-  .thumb:hover { transform: translateY(var(--y, 0)) rotate(0deg) scale(1.05); z-index: 2; }
+  .thumb:hover img { transform: translateY(-5px); box-shadow: 0 30px 46px -22px rgba(18, 24, 36, .6), 0 2px 6px rgba(18, 24, 36, .08); }
 }
 .dm-empty { padding: 90px 20px; text-align: center; font-size: var(--fs-sm); color: var(--muted); }
 
@@ -820,7 +815,7 @@ html.modal-open { overflow: hidden; }
 .detail-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: clamp(28px, 5vw, 64px); align-items: start; }
 
 .prose { max-width: 40em; }
-.prose > :first-child { margin-top: 0; }
+.prose > :first-child, .prose > [data-l] > :first-child { margin-top: 0; }
 .prose h2 { margin: 2.2em 0 .6em; font-size: 1.5rem; font-weight: 650; letter-spacing: -.02em; line-height: 1.25; }
 .prose h3 { margin: 1.8em 0 .5em; font-size: 1.1875rem; font-weight: 650; }
 .prose p, .prose li { color: var(--ink-2); line-height: 1.8; }
@@ -887,7 +882,7 @@ html.js .reveal:not(.is-visible) { opacity: 0; transform: translateY(16px); }
   .project-feature, .others-1 .project-card:not(.project-feature) { grid-column: 1 / -1; }
   .project-feature .project-art { height: 260px; }
   .about { grid-template-columns: 1fr; }
-  .works { columns: 2; }
+  .works { grid-template-columns: repeat(2, 1fr); }
   .detail-layout { grid-template-columns: 1fr; }
   .detail-sidebar { position: static; }
 }
@@ -945,7 +940,7 @@ html.js .reveal:not(.is-visible) { opacity: 0; transform: translateY(16px); }
   .project-art, .project-feature .project-art { height: 200px; }
   .project-info { padding: 20px 20px 22px; }
 
-  .works { columns: 1; }
+  .works { grid-template-columns: 1fr; }
   .tools { gap: 12px; }
   .tool { width: calc(50% - 6px); padding: 22px 10px 18px; }
   .timeline { padding-left: 32px; }
@@ -957,8 +952,8 @@ html.js .reveal:not(.is-visible) { opacity: 0; transform: translateY(16px); }
   .dm-icon .icon { width: 23px; height: 23px; }
   .dm-close { width: 42px; height: 42px; }
   .dm-body { padding: 14px 14px 30px; }
-  .gallery { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 14px; }
-  .thumb, .thumb:hover { width: 100%; transform: none; }
+  .gallery { grid-template-columns: 1fr; gap: 14px; }
+  
   .contact .actions .btn { flex: 1 1 100%; }
   .detail-cta .actions .btn { flex: 1 1 100%; }
   .footer-inner { flex-direction: column; align-items: flex-start; border-radius: 28px; padding: 18px 22px; }
@@ -974,12 +969,12 @@ html.js .reveal:not(.is-visible) { opacity: 0; transform: translateY(16px); }
 
 /* ---------- Preferensi pengguna & fallback ---------- */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .glass, .site-header::before, .main-nav, .pill-status, .pill-art, .footer-inner { background: rgba(255, 255, 255, .92); }
+  .glass, .site-header::before, .pill-status, .pill-art, .footer-inner { background: rgba(255, 255, 255, .92); }
   .ice-light { background: rgba(244, 245, 247, .94); }
   .ice-dark { background: rgba(38, 42, 49, .96); }
 }
 @media (prefers-reduced-transparency: reduce) {
-  .glass, .site-header::before, .main-nav, .pill-status, .pill-art, .menu-toggle, .footer-inner {
+  .glass, .site-header::before, .pill-status, .pill-art, .menu-toggle, .footer-inner {
     background: rgba(255, 255, 255, .96); -webkit-backdrop-filter: none; backdrop-filter: none;
   }
   .ice { -webkit-backdrop-filter: none; backdrop-filter: none; }
@@ -993,4 +988,10 @@ html.js .reveal:not(.is-visible) { opacity: 0; transform: translateY(16px); }
   html.js .reveal:not(.is-visible) { opacity: 1; transform: none; }
   *, *::before, *::after { transition-duration: .01ms !important; }
   ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}
+
+/* Panel menu HP tetap solid bila blur tidak didukung / transparansi dikurangi */
+@media (max-width: 760px) {
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .main-nav { background: rgba(255, 255, 255, .96); } }
+  @media (prefers-reduced-transparency: reduce) { .main-nav { background: rgba(255, 255, 255, .97); -webkit-backdrop-filter: none; backdrop-filter: none; } }
 }

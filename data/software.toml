@@ -17,8 +17,10 @@ name = "SketchUp"
 logo = "images/software/sketchup.svg"
 
 [[tools]]
-name = "QGIS"
-logo = "images/software/qgis.svg"
+name = "Lumion"
+abbr = "Lu"
+bg = "#0b2540"
+fg = "#4cc3f0"
 
 [[tools]]
 name = "Microsoft Excel"
@@ -61,7 +63,7 @@ name = "Figma"
 logo = "images/software/figma.svg"
 
 [[tools]]
-name = "Canva"
-abbr = "Ca"
-bg = "linear-gradient(135deg, #00C4CC, #7D2AE8)"
+name = "CorelDRAW"
+abbr = "Cd"
+bg = "#1c7c3c"
 fg = "#ffffff"

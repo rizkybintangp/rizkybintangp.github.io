@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#e9ebee">
+  <meta name="theme-color" content="#e9ebee" id="metaThemeColor">
   <meta name="color-scheme" content="light">
 
   {{ $title := cond .IsHome .Site.Title (printf "%s · %s" .Title .Site.Title) }}
@@ -34,22 +34,30 @@
   <meta name="twitter:description" content="{{ $desc }}">
   <meta name="twitter:image" content="{{ "images/og-cover.jpg" | absURL }}">
 
-  <!-- Font: SF Pro dipakai otomatis di perangkat Apple, Inter sebagai cadangan di perangkat lain -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}?v={{ now.Unix }}">
+  <link rel="stylesheet" href="{{ "css/motion.css" | relURL }}?v={{ now.Unix }}">
 
-  <script>document.documentElement.classList.add("js");</script>
+  <script>
+    document.documentElement.classList.add("js");
+    try {
+      localStorage.removeItem("rb-theme");
+      var lang = localStorage.getItem("rb-lang");
+      if (lang === "en" || lang === "id") document.documentElement.lang = lang;
+    } catch (e) {}
+  </script>
 </head>
 
 <body id="top">
 
-  <a class="skip-link" href="#main">Lewati ke konten</a>
+  <a class="skip-link" href="#main">{{ partial "t.html" (dict "id" `Lewati ke konten` "en" `Skip to content`) }}</a>
 
-  <!-- Latar ambient: memberi "isi" agar efek kaca terlihat -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
   <div class="ambient" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <canvas class="motion-canvas" id="motionCanvas" aria-hidden="true"></canvas>
 
   <header class="site-header" id="siteHeader">
 
@@ -57,17 +65,21 @@
       <img class="brand-mark" src="{{ "favicon.svg" | relURL }}" alt="" width="40" height="40" aria-hidden="true">
       <span class="brand-text">
         <strong>Rizky Bintang</strong>
-        <small>Civil Engineer & Graphic Designer</small>
+        <small>Civil Engineer &amp; Graphic Designer</small>
       </span>
     </a>
 
     <nav class="main-nav" id="mainNav" aria-label="Navigasi utama">
       <span class="nav-indicator" aria-hidden="true"></span>
-      <a href="{{ .Site.Home.RelPermalink }}#expertise">{{ partial "icon.html" "layers" }}<span>Expertise</span></a>
-      <a href="{{ .Site.Home.RelPermalink }}#portfolio">{{ partial "icon.html" "grid" }}<span>Portfolio</span></a>
-      <a href="{{ .Site.Home.RelPermalink }}#design">{{ partial "icon.html" "pen" }}<span>Design</span></a>
-      <a href="{{ .Site.Home.RelPermalink }}#about">{{ partial "icon.html" "user" }}<span>About</span></a>
-      <a class="nav-cta" href="{{ .Site.Home.RelPermalink }}#contact">Let's talk</a>
+      <a href="{{ .Site.Home.RelPermalink }}#expertise">{{ partial "icon.html" "layers" }}<span>{{ partial "t.html" (dict "id" `Keahlian` "en" `Expertise`) }}</span></a>
+      <a href="{{ .Site.Home.RelPermalink }}#portfolio">{{ partial "icon.html" "grid" }}<span>{{ partial "t.html" (dict "id" `Portofolio` "en" `Portfolio`) }}</span></a>
+      <a href="{{ .Site.Home.RelPermalink }}#design">{{ partial "icon.html" "pen" }}<span>{{ partial "t.html" (dict "id" `Desain` "en" `Design`) }}</span></a>
+      <a href="{{ .Site.Home.RelPermalink }}#about">{{ partial "icon.html" "user" }}<span>{{ partial "t.html" (dict "id" `Tentang` "en" `About`) }}</span></a>
+      <div class="lang-switch" role="group" aria-label="Bahasa / Language">
+        <button type="button" data-lang="id" aria-pressed="true">ID</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="nav-cta magnetic" href="{{ .Site.Home.RelPermalink }}#contact">{{ partial "t.html" (dict "id" `Hubungi saya` "en" `Let's talk`) }}</a>
     </nav>
 
     <button class="menu-toggle" id="menuToggle" type="button"
@@ -83,9 +95,11 @@
     <div class="container footer-inner">
       <span>© {{ now.Year }} Rizky Bintang</span>
       <span class="footer-tag">Civil Engineering &amp; Graphic Designer</span>
-      <a class="footer-top" href="#top">Kembali ke atas {{ partial "icon.html" "arrow-up" }}</a>
+      <a class="footer-top" href="#top">{{ partial "t.html" (dict "id" `Kembali ke atas` "en" `Back to top`) }} {{ partial "icon.html" "arrow-up" }}</a>
     </div>
   </footer>
+
+  <div class="toast glass" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <script src="{{ "js/main.js" | relURL }}?v={{ now.Unix }}" defer></script>
 </body>

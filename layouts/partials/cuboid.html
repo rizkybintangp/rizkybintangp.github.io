@@ -1,0 +1,3 @@
+{{- /* Balok 3D murni CSS: dict w h d (ukuran, px) dan x y z (posisi, px) */ -}}
+{{- $s := printf "--w:%dpx;--h:%dpx;--d:%dpx;--x:%dpx;--y:%dpx;--z:%dpx" (int .w) (int .h) (int .d) (int (.x | default 0)) (int (.y | default 0)) (int (.z | default 0)) -}}
+<div class="cb" style="{{ $s | safeCSS }}"><i class="f"></i><i class="b"></i><i class="r"></i><i class="l"></i><i class="t"></i><i class="u"></i></div>
